@@ -1,0 +1,26 @@
+.footer-container1 {
+  display: contents;
+}
+ 
+.footer-footer-copyright-highlight {
+  color: var(--color-on-surface);
+  font-weight: var(--font-weight-semibold);
+}
+ 
+.footer-footer-copyright-divider {
+  color: var(--color-border);
+}
+ 
+.footer-container2 {
+  display: none;
+}
+ 
+.footer-container3 {
+  display: contents;
+}
+ 
+@media(max-width: 479px) {
+  .footer-footer-copyright-divider {
+    display: none;
+  }
+}
