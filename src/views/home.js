@@ -104,7 +104,7 @@ const Home = (props) => {
             <div className="hero__photo">
               <img
                 alt="Empreendedora confiante gerenciando seu negócio de revenda"
-                src="https://images.pexels.com/photos/7552313/pexels-photo-7552313.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1500"
+                src="/hero-image.png"
                 loading="eager"
               />
             </div>
