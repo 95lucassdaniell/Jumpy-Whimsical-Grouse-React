@@ -16,9 +16,9 @@
   --font-size-xl: 1.75rem;
   --font-size-xs: 0.75rem;
   --color-neutral: #6b6b6b;
-  --color-outline: color-mix(in srgb, #9b1f45 20%, #053668 10%, #ffffff 70%);
+  --color-outline: color-mix(in srgb, #ec56b5 20%, #053668 10%, #ffffff 70%);
   --color-overlay: rgba(11, 11, 11, 0.6);
-  --color-primary: #9b1f45;
+  --color-primary: #ec56b5;
   --color-surface: #ffffff;
   --font-size-xxl: 2.5rem;
   --font-size-base: 1rem;
@@ -35,8 +35,8 @@
   --color-neutral-30: color-mix(in srgb, #6b6b6b 30%, white);
   --color-on-primary: #ffffff;
   --color-on-surface: #0b0b0b;
-  --color-primary-70: color-mix(in srgb, #9b1f45 70%, white);
-  --color-primary-90: color-mix(in srgb, #9b1f45 90%, black);
+  --color-primary-70: color-mix(in srgb, #ec56b5 70%, white);
+  --color-primary-90: color-mix(in srgb, #ec56b5 90%, black);
   --font-family-body: "Open Sans", system-ui, -apple-system, "Segoe UI",
       Roboto, "Helvetica Neue", Arial;
   --content-max-width: 76rem;
