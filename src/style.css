@@ -1620,9 +1620,9 @@
   overflow: hidden;
   position: relative;
   max-width: 480px;
-  background: var(--color-backplate);
-  box-shadow: var(--shadow-level-3);
-  border-radius: var(--border-radius-xl);
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
 }
  
 .features__hero-image {
@@ -2112,7 +2112,7 @@
  
 .hero__photo  img {
   width: 100%;
-  height: auto;
+  height: 600px;
   display: block;
   object-fit: cover;
 }
