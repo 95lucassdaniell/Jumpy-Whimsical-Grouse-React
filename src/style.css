@@ -1536,10 +1536,10 @@
 }
  
 .testimonials__grid {
-  gap: var(--section-gap);
+  gap: var(--spacing-lg);
   display: grid;
   margin-top: var(--spacing-2xl);
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: repeat(2, 1fr);
 }
  
 .testimonials__cta {
@@ -1705,16 +1705,7 @@
   border-radius: var(--border-radius-lg);
 }
  
-.testimonials__card--hero {
-  background: var(--color-surface-elevated);
-  box-shadow: var(--shadow-level-2);
-}
  
-.testimonials__card-stack {
-  gap: var(--spacing-md);
-  display: flex;
-  flex-direction: column;
-}
  
 .product-tile {
   border: 1px solid var(--color-border);
