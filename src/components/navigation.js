@@ -73,43 +73,6 @@ const Navigation = (props) => {
             </svg>
           </button>
           <div id="navMenu" className="navigation__menu">
-            <ul className="navigation__list">
-              <li className="navigation__item">
-                <a href="#quem-somos">
-                  <div className="navigation__link">
-                    <span>Quem Somos</span>
-                  </div>
-                </a>
-              </li>
-              <li className="navigation__item">
-                <a href="#produtos">
-                  <div className="navigation__link">
-                    <span>Produtos</span>
-                  </div>
-                </a>
-              </li>
-              <li className="navigation__item">
-                <a href="#vantagens">
-                  <div className="navigation__link">
-                    <span>Vantagens</span>
-                  </div>
-                </a>
-              </li>
-              <li className="navigation__item">
-                <a href="#depoimentos">
-                  <div className="navigation__link">
-                    <span>Depoimentos</span>
-                  </div>
-                </a>
-              </li>
-              <li className="navigation__item">
-                <a href="#contato">
-                  <div className="navigation__link">
-                    <span>Contato</span>
-                  </div>
-                </a>
-              </li>
-            </ul>
             <div className="navigation__actions">
               <a href="#contato">
                 <div className="btn btn-outline navigation__action-btn">
