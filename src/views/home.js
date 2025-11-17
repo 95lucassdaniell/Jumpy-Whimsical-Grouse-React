@@ -423,37 +423,6 @@ const Home = (props) => {
           aria-labelledby="process-heading"
           className="process"
         >
-          <div className="process__intro">
-            <h2 id="process-heading" className="section-title">
-              Como Começar
-            </h2>
-            <p className="section-content">
-              {' '}
-              4 passos simples e seguros para abrir sua revenda e conquistar
-              independência financeira
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: ' ',
-                }}
-              />
-            </p>
-            <a href="https://atacado.minhatshirt.com.br/#formulario-wpp">
-              <div
-                aria-label="Iniciar jornada empreendedora"
-                className="btn btn-primary"
-              >
-                <span>
-                  {' '}
-                  Começar Agora
-                  <span
-                    dangerouslySetInnerHTML={{
-                      __html: ' ',
-                    }}
-                  />
-                </span>
-              </div>
-            </a>
-          </div>
           <div className="process__steps">
             <article aria-labelledby="step-1" className="process__step">
               <div className="process__step-badge">
@@ -561,6 +530,37 @@ const Home = (props) => {
               <span className="process__stat-number">3 dias</span>
               <span className="process__stat-label">Envio rápido</span>
             </div>
+          </div>
+          <div className="process__intro">
+            <h2 id="process-heading" className="section-title">
+              Como Começar
+            </h2>
+            <p className="section-content">
+              {' '}
+              4 passos simples e seguros para abrir sua revenda e conquistar
+              independência financeira
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: ' ',
+                }}
+              />
+            </p>
+            <a href="https://atacado.minhatshirt.com.br/#formulario-wpp">
+              <div
+                aria-label="Iniciar jornada empreendedora"
+                className="btn btn-primary"
+              >
+                <span>
+                  {' '}
+                  Começar Agora
+                  <span
+                    dangerouslySetInnerHTML={{
+                      __html: ' ',
+                    }}
+                  />
+                </span>
+              </div>
+            </a>
           </div>
         </section>
         <section
