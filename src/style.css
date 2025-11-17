@@ -2809,4 +2809,7 @@
   .hero__stat-item {
     min-width: 100%;
   }
+  .hero__photo img {
+    object-position: center 60%;
+  }
 }
