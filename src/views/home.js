@@ -138,8 +138,8 @@ const Home = (props) => {
           <div className="features__hero-image">
             <div className="features__scrim"></div>
             <img
-              alt="Coleção diversificada de t-shirts de alta qualidade"
-              src="https://images.pexels.com/photos/5864266/pexels-photo-5864266.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1500"
+              alt="Loja Minha T-Shirt com coleção colorida de produtos"
+              src="/attached_assets/2023-08-09_1763387828587.webp"
               loading="lazy"
             />
             <div className="features__trust-metrics">
