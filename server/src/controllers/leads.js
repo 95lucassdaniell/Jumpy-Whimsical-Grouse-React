@@ -1,0 +1,104 @@
+const { PrismaClient } = require('@prisma/client');
+const { Parser } = require('json2csv');
+
+const prisma = new PrismaClient();
+
+async function createLead(req, res) {
+  try {
+    const { name, email, phone, utmSource, utmMedium, utmCampaign } = req.body;
+
+    const lead = await prisma.lead.create({
+      data: {
+        name,
+        email,
+        phone,
+        utmSource,
+        utmMedium,
+        utmCampaign
+      }
+    });
+
+    res.status(201).json({
+      success: true,
+      leadId: lead.id
+    });
+  } catch (error) {
+    console.error('Error creating lead:', error);
+    res.status(500).json({ error: 'Erro ao salvar contato' });
+  }
+}
+
+async function recordWhatsAppClick(req, res) {
+  try {
+    const { id } = req.params;
+
+    await prisma.lead.update({
+      where: { id },
+      data: { whatsappClickedAt: new Date() }
+    });
+
+    res.json({ success: true });
+  } catch (error) {
+    console.error('Error recording WhatsApp click:', error);
+    res.status(500).json({ error: 'Erro ao registrar clique' });
+  }
+}
+
+async function getLeads(req, res) {
+  try {
+    const { format, page = 1, limit = 50 } = req.query;
+    const skip = (page - 1) * limit;
+
+    const [leads, total] = await Promise.all([
+      prisma.lead.findMany({
+        orderBy: { createdAt: 'desc' },
+        skip: parseInt(skip),
+        take: parseInt(limit)
+      }),
+      prisma.lead.count()
+    ]);
+
+    if (format === 'csv') {
+      const fields = [
+        { label: 'Nome', value: 'name' },
+        { label: 'Email', value: 'email' },
+        { label: 'Telefone', value: 'phone' },
+        { label: 'Data', value: 'createdAt' },
+        { label: 'UTM Source', value: 'utmSource' },
+        { label: 'UTM Medium', value: 'utmMedium' },
+        { label: 'UTM Campaign', value: 'utmCampaign' },
+        { label: 'Clicou WhatsApp', value: 'whatsappClickedAt' }
+      ];
+
+      const allLeads = await prisma.lead.findMany({
+        orderBy: { createdAt: 'desc' }
+      });
+
+      const parser = new Parser({ fields });
+      const csv = parser.parse(allLeads);
+
+      res.header('Content-Type', 'text/csv');
+      res.header('Content-Disposition', `attachment; filename="leads-${new Date().toISOString().split('T')[0]}.csv"`);
+      return res.send(csv);
+    }
+
+    res.json({
+      leads,
+      pagination: {
+        total,
+        page: parseInt(page),
+        limit: parseInt(limit),
+        pages: Math.ceil(total / limit)
+      }
+    });
+  } catch (error) {
+    console.error('Error getting leads:', error);
+    res.status(500).json({ error: 'Erro ao buscar leads' });
+  }
+}
+
+module.exports = {
+  createLead,
+  recordWhatsAppClick,
+  getLeads
+};

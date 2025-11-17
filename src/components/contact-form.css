@@ -1,0 +1,123 @@
+.contact-form {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: var(--spacing-lg);
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+}
+
+.form-group {
+  margin-bottom: var(--spacing-md);
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: var(--spacing-xs);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  font-size: 0.9rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 2px solid #e5e7eb;
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(236, 86, 181, 0.1);
+}
+
+.form-group input.input-error {
+  border-color: #ef4444;
+}
+
+.error-message {
+  display: block;
+  margin-top: var(--spacing-xs);
+  color: #ef4444;
+  font-size: 0.85rem;
+}
+
+.btn-submit {
+  width: 100%;
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-md);
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.btn-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.form-privacy {
+  margin-top: var(--spacing-md);
+  text-align: center;
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+.contact-form-success {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: var(--spacing-xl);
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+}
+
+.success-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto var(--spacing-lg);
+  background: linear-gradient(135deg, #10b981, #059669);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.success-title {
+  font-size: 1.75rem;
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-sm);
+  font-weight: 700;
+}
+
+.success-message {
+  color: #6b7280;
+  margin-bottom: var(--spacing-xl);
+  font-size: 1.05rem;
+}
+
+.btn-whatsapp {
+  width: 100%;
+  padding: var(--spacing-md);
+  font-size: 1.05rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+}
+
+@media (max-width: 768px) {
+  .contact-form,
+  .contact-form-success {
+    padding: var(--spacing-md);
+    margin: 0 var(--spacing-sm);
+  }
+}

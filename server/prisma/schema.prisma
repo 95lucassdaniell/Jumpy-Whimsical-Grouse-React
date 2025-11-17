@@ -1,0 +1,44 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Lead {
+  id                 String    @id @default(uuid())
+  createdAt          DateTime  @default(now()) @map("created_at")
+  name               String
+  email              String
+  phone              String
+  utmSource          String?   @map("utm_source")
+  utmMedium          String?   @map("utm_medium")
+  utmCampaign        String?   @map("utm_campaign")
+  whatsappClickedAt  DateTime? @map("whatsapp_clicked_at")
+
+  @@map("leads")
+}
+
+model Visit {
+  id          String   @id @default(uuid())
+  visitedAt   DateTime @default(now()) @map("visited_at")
+  sessionId   String   @map("session_id")
+  ipHash      String?  @map("ip_hash")
+  page        String
+  utmSource   String?  @map("utm_source")
+  utmMedium   String?  @map("utm_medium")
+  utmCampaign String?  @map("utm_campaign")
+  referrer    String?
+
+  @@map("visits")
+}
+
+model Admin {
+  id       String @id @default(uuid())
+  username String @unique
+  password String
+
+  @@map("admins")
+}
