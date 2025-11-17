@@ -42,3 +42,23 @@ model Admin {
 
   @@map("admins")
 }
+
+model AbandonedSignup {
+  id              String    @id @default(uuid())
+  createdAt       DateTime  @default(now()) @map("created_at")
+  updatedAt       DateTime  @updatedAt @map("updated_at")
+  sessionId       String    @map("session_id")
+  name            String?
+  email           String?
+  phone           String?
+  utmSource       String?   @map("utm_source")
+  utmMedium       String?   @map("utm_medium")
+  utmCampaign     String?   @map("utm_campaign")
+  completedAt     DateTime? @map("completed_at")
+  ipHash          String?   @map("ip_hash")
+  
+  @@index([sessionId])
+  @@index([email])
+  @@index([createdAt])
+  @@map("abandoned_signups")
+}
