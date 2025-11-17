@@ -69,20 +69,6 @@ const Home = (props) => {
                 }}
               />
             </p>
-            <div className="hero__stats">
-              <div className="hero__stat-item">
-                <span className="hero__stat-number">53.000+</span>
-                <span className="hero__stat-label">Revendedoras ativas</span>
-              </div>
-              <div className="hero__stat-item">
-                <span className="hero__stat-number">93.530+</span>
-                <span className="hero__stat-label">Pedidos entregues</span>
-              </div>
-              <div className="hero__stat-item">
-                <span className="hero__stat-number">200%</span>
-                <span className="hero__stat-label">Margem de lucro</span>
-              </div>
-            </div>
             <a href="https://atacado.minhatshirt.com.br/#formulario-wpp">
               <div
                 aria-label="Falar com consultora pelo WhatsApp"
