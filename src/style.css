@@ -1738,15 +1738,6 @@
   align-items: flex-start;
   flex-direction: column;
 }
-
-.cta-panel > a {
-  width: 100%;
-}
-
-.cta-panel .whatsapp-cta {
-  width: 100%;
-  justify-content: center;
-}
  
 .credentials {
   gap: var(--spacing-md);
