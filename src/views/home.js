@@ -69,7 +69,7 @@ const Home = (props) => {
                 }}
               />
             </p>
-            <a href="https://atacado.minhatshirt.com.br/#formulario-wpp">
+            <a href="#contato">
               <div
                 aria-label="Falar com consultora pelo WhatsApp"
                 className="btn btn-primary"
@@ -631,7 +631,7 @@ const Home = (props) => {
                 }}
               />
             </p>
-            <a href="https://atacado.minhatshirt.com.br/#formulario-wpp">
+            <a href="#contato">
               <div
                 aria-label="Iniciar jornada empreendedora"
                 className="btn btn-primary"
@@ -1106,7 +1106,7 @@ const Home = (props) => {
           </div>
           <div className="testimonials__cta">
             <p className="section-content">Quer ver resultados parecidos?</p>
-            <a href="https://atacado.minhatshirt.com.br/#formulario-wpp">
+            <a href="#contato">
               <div
                 aria-label="Começar agora com consultora"
                 className="btn btn-primary"

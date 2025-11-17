@@ -111,7 +111,7 @@ const Navigation = (props) => {
               </li>
             </ul>
             <div className="navigation__actions">
-              <a href="#formulario-wpp">
+              <a href="#contato">
                 <div className="btn btn-outline navigation__action-btn">
                   <svg
                     width="20"
@@ -133,7 +133,7 @@ const Navigation = (props) => {
                   <span>Falar com Consultora</span>
                 </div>
               </a>
-              <a href="#cadastro">
+              <a href="#contato">
                 <div className="btn btn-primary navigation__action-btn--primary navigation__action-btn">
                   <svg
                     width="20"
