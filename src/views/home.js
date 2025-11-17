@@ -115,15 +115,13 @@ const Home = (props) => {
           aria-labelledby="features-heading"
           className="features"
         >
-          <div className="features__visual">
-            <div className="features__hero-image">
-              <div className="features__scrim"></div>
-              <img
-                alt="Coleção diversificada de t-shirts de alta qualidade"
-                src="https://images.pexels.com/photos/5864266/pexels-photo-5864266.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1500"
-                loading="lazy"
-              />
-            </div>
+          <div className="features__hero-image">
+            <div className="features__scrim"></div>
+            <img
+              alt="Coleção diversificada de t-shirts de alta qualidade"
+              src="https://images.pexels.com/photos/5864266/pexels-photo-5864266.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1500"
+              loading="lazy"
+            />
             <div className="features__trust-metrics">
               <div className="features__trust-item">
                 <svg
@@ -186,7 +184,7 @@ const Home = (props) => {
               </div>
             </div>
           </div>
-          <div className="features__benefits">
+          <div className="features__content">
             <h2 id="features-heading" className="section-title">
               {' '}
               Por que começar com a Empreenda T-Shirt
@@ -196,7 +194,8 @@ const Home = (props) => {
                 }}
               />
             </h2>
-            <article aria-labelledby="benefit-1" className="features__card">
+            <div className="features__grid">
+              <article aria-labelledby="benefit-1" className="features__card">
               <svg
                 width="28"
                 xmlns="http://www.w3.org/2000/svg"
@@ -416,6 +415,7 @@ const Home = (props) => {
                 />
               </p>
             </article>
+            </div>
           </div>
         </section>
         <section
