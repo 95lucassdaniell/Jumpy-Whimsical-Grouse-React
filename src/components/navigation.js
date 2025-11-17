@@ -16,12 +16,15 @@ const Navigation = (props) => {
           <div className="navigation__brand">
             <a href="/">
               <div
-                aria-label="Empreenda T-Shirt - Página Inicial"
+                aria-label="Minha T-Shirt - Página Inicial"
                 className="navigation__logo-link"
               >
                 <div className="navigation__logo">
-                  <span className="navigation__logo-text">Empreenda</span>
-                  <span className="navigation__logo-accent">T-Shirt</span>
+                  <img 
+                    src="/logo-minha-tshirt.png" 
+                    alt="Minha T-Shirt Logo" 
+                    className="navigation__logo-image"
+                  />
                 </div>
               </div>
             </a>

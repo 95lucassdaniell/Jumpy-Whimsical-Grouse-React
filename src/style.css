@@ -858,6 +858,13 @@
   gap: 2px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+}
+
+.navigation__logo-image {
+  height: 50px;
+  width: auto;
+  display: block;
 }
  
 .navigation__item {
