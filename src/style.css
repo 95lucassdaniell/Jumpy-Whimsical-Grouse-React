@@ -1435,7 +1435,7 @@
  
 .about {
   margin: var(--spacing-2xl) auto var(--section-gap);
-  padding: var(--spacing-4xl) var(--spacing-3xl);
+  padding: var(--spacing-4xl) var(--spacing-lg);
   max-width: var(--content-max-width);
   background: var(--color-surface);
   box-shadow: var(--shadow-level-1);
