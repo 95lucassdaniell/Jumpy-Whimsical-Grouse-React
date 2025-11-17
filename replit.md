@@ -37,10 +37,9 @@ Branding: Primary color #ec56b5 (vibrant pink)
 ## Admin Access
 
 **Login URL**: `/admin`
-**Default Credentials**:
+**Credentials**:
 - Username: `admin`
-- Password: `admin123`
-⚠️ **IMPORTANTE**: Altere a senha após o primeiro login usando o script em `server/src/utils/createAdmin.js`
+- Password: `lucaslol321`
 
 ## Database Schema
 

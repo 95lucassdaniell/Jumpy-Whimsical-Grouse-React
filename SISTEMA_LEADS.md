@@ -49,11 +49,9 @@ Os visitantes:
 ### 2. Painel Administrativo
 **URL**: `https://seu-replit.repl.co/admin`
 
-**Credenciais padrão**:
+**Suas Credenciais**:
 - Usuário: `admin`
-- Senha: `admin123`
-
-⚠️ **IMPORTANTE**: Altere a senha padrão!
+- Senha: `lucaslol321`
 
 **Aba "📝 Leads Completos"**:
 - Ver métricas em tempo real
