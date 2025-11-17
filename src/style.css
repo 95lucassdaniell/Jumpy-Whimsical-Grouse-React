@@ -2772,6 +2772,9 @@
   .features {
     padding: var(--spacing-md);
   }
+  .features__content {
+    padding: var(--spacing-2xl) var(--spacing-md);
+  }
   .process {
     gap: var(--spacing-xl);
     padding: var(--spacing-md);

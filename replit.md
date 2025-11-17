@@ -15,6 +15,10 @@ This is a client-side React application for "Empreenda T-Shirt," a wholesale t-s
 - Banner now displays authentic store photo showcasing colorful product displays
 - Replaced text logo "Empreenda T-Shirt" with colorful Minha T-Shirt logo image in navigation
 - Reduced section spacing between hero and about sections for better desktop layout (removed min-height: 100vh from hero)
+- Reduced lateral margins in features section for better text display optimization
+- Fixed mobile hero image cropping with object-position adjustment (center 60%)
+- Enhanced team section: removed 3 smaller cards (53k+, 200%, 3 dias) and increased team photo from 80px to 140px with better styling
+- Standardized lateral margins across About and Features sections for consistent spacing on mobile
 
 ## User Preferences
 
@@ -59,7 +63,7 @@ Branding: Primary color #ec56b5 (vibrant pink)
 - CSS custom properties (CSS variables) for design tokens
 - Global design system defined in `/src/style.css`:
   - Spacing scale (xs to 4xl)
-  - Color palette (primary: #9b1f45, secondary: #053668, accent: #ff6b35)
+  - Color palette (primary: #ec56b5, secondary: #053668, accent: #ff6b35)
   - Typography scale and font families
   - Border radius values
   - Shadow levels
