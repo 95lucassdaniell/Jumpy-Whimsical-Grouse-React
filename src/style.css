@@ -1627,6 +1627,15 @@
   border-radius: var(--border-radius-lg);
   flex-direction: column;
 }
+
+.hero__content > a {
+  width: 100%;
+}
+
+.hero__content > a .btn {
+  width: 100%;
+  justify-content: center;
+}
  
 .hero__visual {
   display: flex;
