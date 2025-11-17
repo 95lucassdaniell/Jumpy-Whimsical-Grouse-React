@@ -24,6 +24,7 @@ This is a client-side React application for "Empreenda T-Shirt," a wholesale t-s
 - Changed HTML lang attribute from "en" to "pt-BR" for proper Portuguese language declaration
 - Added header clearance spacing (87px desktop, 71px mobile) to prevent hero content from being hidden under fixed navigation
 - Unified all CTA buttons to scroll to contact section (#contato) for improved conversion funnel
+- Implemented Google Tag Manager tracking (GTM-P3RGJRKK) in head and body for analytics
 
 ## User Preferences
 
