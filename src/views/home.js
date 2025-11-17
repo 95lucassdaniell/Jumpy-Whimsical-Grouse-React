@@ -440,6 +440,85 @@ const Home = (props) => {
         </section>
         <section
           role="region"
+          aria-labelledby="products-heading"
+          className="products-carousel"
+        >
+          <h2 id="products-heading" className="section-title">
+            Conheça Nossos Produtos
+          </h2>
+          <div className="carousel-container">
+            <button
+              className="carousel-btn carousel-btn--prev"
+              aria-label="Ver produtos anteriores"
+              onClick={(e) => {
+                const container = e.target.closest('.carousel-container').querySelector('.carousel-track');
+                container.scrollBy({ left: -container.offsetWidth / 3, behavior: 'smooth' });
+              }}
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+            </button>
+            <div className="carousel-track">
+              <div className="carousel-item">
+                <img
+                  src="https://images.tcdn.com.br/img/img_prod/1094352/t_shirt_coracoes_na_gola_alto_relevo_vermelho_9301_1_a8deca38610facc3420e85781808e280.jpg"
+                  alt="T-Shirt Corações na Gola Alto Relevo Vermelho"
+                  loading="lazy"
+                />
+              </div>
+              <div className="carousel-item">
+                <img
+                  src="https://images.tcdn.com.br/img/img_prod/1094352/t_shirt_deixe_deus_cuidar_vermelho_9297_1_9d03e894f8e41a80b0a6ece1dd62b6fd.jpg"
+                  alt="T-Shirt Deixe Deus Cuidar Vermelho"
+                  loading="lazy"
+                />
+              </div>
+              <div className="carousel-item">
+                <img
+                  src="https://images.tcdn.com.br/img/img_prod/1094352/t_shirt_coracoes_na_manga_preto_9291_1_4889b5006f9205e77d03509ff076e30b.jpg"
+                  alt="T-Shirt Corações na Manga Preto"
+                  loading="lazy"
+                />
+              </div>
+              <div className="carousel-item">
+                <img
+                  src="https://images.tcdn.com.br/img/img_prod/1094352/t_shirt_coracoes_alto_relevo_vermelho_9293_1_a1cd4c344c9a839193b4f1c80877b842.jpg"
+                  alt="T-Shirt Corações Alto Relevo Vermelho"
+                  loading="lazy"
+                />
+              </div>
+              <div className="carousel-item">
+                <img
+                  src="https://images.tcdn.com.br/img/img_prod/1094352/t_shirt_tua_graca_rosa_pink_10612_1_7ff06a0c3a241a2ebfab24d03d3d4469.jpg"
+                  alt="T-Shirt Tua Graça Rosa Pink"
+                  loading="lazy"
+                />
+              </div>
+              <div className="carousel-item">
+                <img
+                  src="https://images.tcdn.com.br/img/img_prod/1094352/t_shirt_abencoada_por_deus_preto_10180_1_0a6e9429f3cafc767b1c4d199d3a170a.jpg"
+                  alt="T-Shirt Abençoada por Deus Preto"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+            <button
+              className="carousel-btn carousel-btn--next"
+              aria-label="Ver próximos produtos"
+              onClick={(e) => {
+                const container = e.target.closest('.carousel-container').querySelector('.carousel-track');
+                container.scrollBy({ left: container.offsetWidth / 3, behavior: 'smooth' });
+              }}
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+          </div>
+        </section>
+        <section
+          role="region"
           aria-labelledby="process-heading"
           className="process"
         >
