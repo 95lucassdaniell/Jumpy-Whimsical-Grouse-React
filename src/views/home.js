@@ -125,7 +125,7 @@ const Home = (props) => {
             <div className="features__scrim"></div>
             <img
               alt="Loja Minha T-Shirt com coleção colorida de produtos"
-              src="/attached_assets/2023-08-09_1763387828587.webp"
+              src="/attached_assets/2023-08-09_1763388815758.webp"
               loading="lazy"
             />
             <div className="features__trust-metrics">
