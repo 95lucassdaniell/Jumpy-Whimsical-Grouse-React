@@ -1124,7 +1124,7 @@ const Home = (props) => {
             </a>
           </div>
         </section>
-        <section className="contact-card">
+        <section id="contato" className="contact-card">
           <div className="cta-panel">
             <h2 className="hero-title">
               Pronta para transformar seu sonho em renda?
