@@ -1428,16 +1428,16 @@
 }
  
 .features {
-  gap: var(--spacing-lg);
+  gap: var(--spacing-2xl);
   margin: var(--section-gap) auto;
-  display: grid;
-  padding: var(--spacing-2xl);
+  display: flex;
+  padding: 0;
   max-width: var(--content-max-width);
   background: var(--color-surface-elevated);
   box-shadow: var(--shadow-level-1);
-  align-items: start;
   border-radius: var(--border-radius-lg);
-  grid-template-columns: 1.6fr 1fr;
+  flex-direction: column;
+  overflow: hidden;
 }
  
 .process {
@@ -1503,18 +1503,22 @@
   justify-content: center;
 }
  
-.features__visual {
-  opacity: 0;
-  position: relative;
-  animation: featuresFadeIn var(--animation-duration-standard)
-      var(--animation-curve-primary) forwards;
-  transform: translateX(-6px);
-}
  
-.features__benefits {
-  gap: var(--spacing-md);
+.features__content {
+  gap: var(--spacing-xl);
   display: flex;
+  padding: var(--spacing-2xl);
   flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.features__grid {
+  gap: var(--spacing-md);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  text-align: left;
+  max-width: 100%;
 }
  
 .process__intro {
@@ -1634,14 +1638,18 @@
 .features__hero-image {
   overflow: hidden;
   position: relative;
-  border-radius: var(--border-radius-lg);
-  margin-bottom: var(--spacing-md);
+  height: 300px;
+  display: flex;
+  align-items: flex-end;
+  padding: var(--spacing-xl);
 }
  
 .features__trust-metrics {
   gap: var(--spacing-md);
   display: flex;
   flex-wrap: wrap;
+  position: relative;
+  z-index: 2;
 }
  
 .features__card {
@@ -1660,6 +1668,7 @@
       box-shadow var(--animation-duration-fast) var(--animation-curve-primary);
   align-items: flex-start;
   border-radius: var(--border-radius-md);
+  flex-direction: column;
 }
  
 .process__step {
@@ -2110,41 +2119,39 @@
  
 .features__hero-image  img {
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
   object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
  
 .features__trust-item  svg {
   color: var(--color-primary);
 }
  
-.features__card:nth-child(2) {
+.features__grid > .features__card:nth-child(2) {
   animation-delay: 0.08s;
 }
  
-.features__card:nth-child(3) {
+.features__grid > .features__card:nth-child(3) {
   animation-delay: 0.16s;
 }
  
-.features__card:nth-child(4) {
+.features__grid > .features__card:nth-child(4) {
   animation-delay: 0.24s;
 }
  
-.features__card:nth-child(5) {
+.features__grid > .features__card:nth-child(5) {
   animation-delay: 0.32s;
 }
  
-.features__card:nth-child(6) {
+.features__grid > .features__card:nth-child(6) {
   animation-delay: 0.4s;
 }
  
-.features__card:nth-child(7) {
-  animation-delay: 0.48s;
-}
- 
 .features__card:hover {
-  transform: scale(1.02);
   box-shadow: var(--shadow-level-3);
 }
  
