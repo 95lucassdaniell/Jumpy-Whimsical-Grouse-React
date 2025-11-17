@@ -1422,13 +1422,12 @@
   position: relative;
   max-width: var(--content-max-width);
   background: var(--color-surface);
-  min-height: 100vh;
   align-items: center;
   grid-template-columns: 2fr 1fr;
 }
  
 .about {
-  margin: var(--section-gap) auto;
+  margin: var(--spacing-2xl) auto var(--section-gap);
   padding: var(--spacing-4xl) var(--spacing-3xl);
   max-width: var(--content-max-width);
   background: var(--color-surface);
