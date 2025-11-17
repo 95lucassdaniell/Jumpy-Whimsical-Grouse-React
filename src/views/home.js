@@ -517,21 +517,22 @@ const Home = (props) => {
               </div>
             </article>
           </div>
-          <div className="process__proof">
-            <div className="process__stat">
-              <span className="process__stat-number">93.530+</span>
-              <span className="process__stat-label">Pedidos entregues</span>
+          <div className="process__sidebar">
+            <div className="process__proof">
+              <div className="process__stat">
+                <span className="process__stat-number">93.530+</span>
+                <span className="process__stat-label">Pedidos entregues</span>
+              </div>
+              <div className="process__stat">
+                <span className="process__stat-number">8 anos</span>
+                <span className="process__stat-label">Construindo sonhos</span>
+              </div>
+              <div className="process__stat">
+                <span className="process__stat-number">3 dias</span>
+                <span className="process__stat-label">Envio rápido</span>
+              </div>
             </div>
-            <div className="process__stat">
-              <span className="process__stat-number">8 anos</span>
-              <span className="process__stat-label">Construindo sonhos</span>
-            </div>
-            <div className="process__stat">
-              <span className="process__stat-number">3 dias</span>
-              <span className="process__stat-label">Envio rápido</span>
-            </div>
-          </div>
-          <div className="process__intro">
+            <div className="process__intro">
             <h2 id="process-heading" className="section-title">
               Como Começar
             </h2>
@@ -561,6 +562,7 @@ const Home = (props) => {
                 </span>
               </div>
             </a>
+            </div>
           </div>
         </section>
         <section

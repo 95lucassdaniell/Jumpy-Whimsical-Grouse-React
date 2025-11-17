@@ -1449,7 +1449,7 @@
   background: var(--color-surface);
   box-shadow: var(--shadow-level-1);
   border-radius: var(--border-radius-lg);
-  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-columns: 1fr 1fr;
 }
  
 .testimonials {
@@ -1531,6 +1531,12 @@
  
 .process__proof {
   gap: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+}
+
+.process__sidebar {
+  gap: var(--spacing-lg);
   display: flex;
   flex-direction: column;
 }
@@ -1683,12 +1689,6 @@
   flex-direction: column;
 }
  
-.process__proof-image {
-  width: 100%;
-  margin-top: var(--spacing-md);
-  object-fit: cover;
-  border-radius: var(--border-radius-lg);
-}
  
 .testimonials__card {
   border: 1px solid var(--color-border);
