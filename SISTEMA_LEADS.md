@@ -1,8 +1,8 @@
-# 📋 Sistema de Captação de Leads - Minha T-Shirt
+# 📋 Sistema de Captação e Recuperação de Leads - Minha T-Shirt
 
 ## 🎯 O que foi implementado
 
-Um sistema completo de captação e gerenciamento de leads com:
+Um sistema completo de captação, gerenciamento e **recuperação de leads abandonados** com:
 
 ### ✅ Formulário de Contato
 - Campos: Nome, Email e Telefone/WhatsApp
@@ -55,11 +55,55 @@ Os visitantes:
 
 ⚠️ **IMPORTANTE**: Altere a senha padrão!
 
-**No painel você pode**:
+**Aba "📝 Leads Completos"**:
 - Ver métricas em tempo real
-- Consultar todos os leads cadastrados
-- Exportar leads para CSV
+- Consultar todos os leads que completaram o cadastro
+- Exportar leads completos para CSV
 - Ver quais leads clicaram no WhatsApp
+
+**Aba "⚠️ Cadastros Abandonados" (NOVO!)**:
+- Ver pessoas que começaram a preencher mas não completaram
+- Métricas de abandono (total, últimas 24h, com email, com telefone)
+- Taxa de recuperação
+- Exportar cadastros abandonados para CSV
+- **Perfeito para remarketing e recuperação de leads!**
+
+---
+
+## 💡 Sistema de Recuperação de Cadastros Abandonados
+
+### O que é?
+O sistema captura automaticamente dados de pessoas que começam a preencher o formulário mas não completam. Isso é MUITO valioso porque você pode:
+
+1. **Recuperar leads perdidos** - Entre em contato com quem quase completou
+2. **Entender o problema** - Por que as pessoas abandonam?
+3. **Remarketing** - Criar campanhas direcionadas para quem abandonou
+
+### Como funciona?
+
+1. **Visitante começa a preencher** o formulário (digita nome, email ou telefone)
+2. **Sistema salva automaticamente** os dados parciais em tempo real (após 1,5 segundos de pausa)
+3. **Se o visitante sair** sem completar → dados ficam salvos como "Abandonado"
+4. **No painel admin** → Você vê todos os cadastros não concluídos na aba "⚠️ Cadastros Abandonados"
+
+### Exemplo prático:
+
+```
+Maria acessa seu site → Começa a digitar:
+- Nome: "Maria Silva"  
+- Email: "maria@email.com"
+- Telefone: "" (ainda não preencheu)
+
+→ Maria fecha a aba antes de clicar em "Continuar"
+
+Você vê no admin:
+Nome: Maria Silva
+Email: maria@email.com  
+Telefone: -
+Última atualização: Hoje às 14:32
+```
+
+Agora você pode enviar um email para maria@email.com oferecendo ajuda!
 
 ---
 
