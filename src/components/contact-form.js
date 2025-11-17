@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -12,18 +12,78 @@ const schema = yup.object({
     .min(10, 'Telefone deve ter pelo menos 10 dígitos')
 }).required();
 
+const getOrCreateSessionId = () => {
+  let sessionId = sessionStorage.getItem('formSessionId');
+  if (!sessionId) {
+    sessionId = 'session_' + Date.now() + '_' + Math.random().toString(36).substring(2, 9);
+    sessionStorage.setItem('formSessionId', sessionId);
+  }
+  return sessionId;
+};
+
 const ContactForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [leadId, setLeadId] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '' });
+  const saveTimeoutRef = useRef(null);
+  const sessionIdRef = useRef(getOrCreateSessionId());
   
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
+    watch
   } = useForm({
     resolver: yupResolver(schema)
   });
+
+  const savePartialData = async (data) => {
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      await fetch('/api/abandoned-signups', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          sessionId: sessionIdRef.current,
+          name: data.name || null,
+          email: data.email || null,
+          phone: data.phone || null,
+          utmSource: urlParams.get('utm_source'),
+          utmMedium: urlParams.get('utm_medium'),
+          utmCampaign: urlParams.get('utm_campaign')
+        })
+      });
+    } catch (error) {
+      console.error('Error saving partial data:', error);
+    }
+  };
+
+  const handleFieldChange = (field, value) => {
+    const updatedData = { ...formData, [field]: value };
+    setFormData(updatedData);
+
+    if (saveTimeoutRef.current) {
+      clearTimeout(saveTimeoutRef.current);
+    }
+
+    if (value && value.length > 2) {
+      saveTimeoutRef.current = setTimeout(() => {
+        savePartialData(updatedData);
+      }, 1500);
+    }
+  };
+
+  useEffect(() => {
+    const subscription = watch((value) => {
+      if (value.name !== formData.name) handleFieldChange('name', value.name);
+      if (value.email !== formData.email) handleFieldChange('email', value.email);
+      if (value.phone !== formData.phone) handleFieldChange('phone', value.phone);
+    });
+    return () => subscription.unsubscribe();
+  }, [watch, formData]);
 
   const onSubmit = async (data) => {
     setIsLoading(true);
@@ -47,6 +107,16 @@ const ContactForm = () => {
         const result = await response.json();
         setLeadId(result.leadId);
         setIsSubmitted(true);
+
+        await fetch('/api/abandoned-signups/mark-completed', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            sessionId: sessionIdRef.current
+          })
+        });
         
         if (window.dataLayer) {
           window.dataLayer.push({
