@@ -6,9 +6,18 @@ This is a client-side React application for "Empreenda T-Shirt," a wholesale t-s
 
 **Migration Status**: Successfully migrated from Vercel to Replit on November 16, 2025. The application is configured to run on Replit's environment with proper host and port bindings.
 
+## Recent Changes
+
+**November 17, 2025**
+- Removed statistics cards (53.000+, 93.530+, 200%) from hero section for cleaner layout
+- Fixed banner image display issue: moved store photo from `attached_assets/` to `public/banner-loja.jpg` for proper CRA asset serving
+- Updated primary branding color to #ec56b5 (vibrant pink)
+- Banner now displays authentic store photo showcasing colorful product displays
+
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
+Branding: Primary color #ec56b5 (vibrant pink)
 
 ## System Architecture
 
