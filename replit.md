@@ -16,9 +16,13 @@ This is a client-side React application for "Empreenda T-Shirt," a wholesale t-s
 - Replaced text logo "Empreenda T-Shirt" with colorful Minha T-Shirt logo image in navigation
 - Reduced section spacing between hero and about sections for better desktop layout (removed min-height: 100vh from hero)
 - Reduced lateral margins in features section for better text display optimization
-- Fixed mobile hero image cropping with object-position adjustment (center 60%)
+- Fixed mobile hero image cropping with object-position adjustment (center 70% for proper framing)
 - Enhanced team section: removed 3 smaller cards (53k+, 200%, 3 dias) and increased team photo from 80px to 140px with better styling
 - Standardized lateral margins across About and Features sections for consistent spacing on mobile
+- Made features section full-width on mobile (no lateral margins) for better space utilization
+- Updated page title from "Jumpy Whimsical Grouse" to "Minha T-Shirt - Atacado" 
+- Changed HTML lang attribute from "en" to "pt-BR" for proper Portuguese language declaration
+- Added header clearance spacing (87px desktop, 71px mobile) to prevent hero content from being hidden under fixed navigation
 
 ## User Preferences
 
