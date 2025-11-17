@@ -589,7 +589,7 @@ const Home = (props) => {
             <article
               role="article"
               aria-label="Depoimento de Tati M."
-              className="testimonials__card testimonials__card--hero"
+              className="testimonials__card"
             >
               <div className="testimonials__card-header">
                 <div className="testimonials__avatar">
@@ -695,12 +695,11 @@ const Home = (props) => {
                 </span>
               </blockquote>
             </article>
-            <div className="testimonials__card-stack">
-              <article
-                role="article"
-                aria-label="Depoimento de Renata A."
-                className="testimonials__card"
-              >
+            <article
+              role="article"
+              aria-label="Depoimento de Renata A."
+              className="testimonials__card"
+            >
                 <div className="testimonials__card-header">
                   <div className="testimonials__avatar">
                     <span>RA</span>
@@ -1023,7 +1022,6 @@ const Home = (props) => {
                   </span>
                 </blockquote>
               </article>
-            </div>
           </div>
           <div className="testimonials__cta">
             <p className="section-content">Quer ver resultados parecidos?</p>
