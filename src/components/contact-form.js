@@ -117,6 +117,10 @@ const ContactForm = () => {
             sessionId: sessionIdRef.current
           })
         });
+
+        sessionStorage.removeItem('formSessionId');
+        sessionIdRef.current = 'session_' + Date.now() + '_' + Math.random().toString(36).substring(2, 9);
+        sessionStorage.setItem('formSessionId', sessionIdRef.current);
         
         if (window.dataLayer) {
           window.dataLayer.push({

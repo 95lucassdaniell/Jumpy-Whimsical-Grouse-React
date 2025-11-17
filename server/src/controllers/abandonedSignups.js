@@ -36,7 +36,8 @@ const savePartialSignup = async (req, res) => {
           utmSource: utmSource || existingSignup.utmSource,
           utmMedium: utmMedium || existingSignup.utmMedium,
           utmCampaign: utmCampaign || existingSignup.utmCampaign,
-          ipHash: ipHash || existingSignup.ipHash
+          ipHash: ipHash || existingSignup.ipHash,
+          completedAt: null
         }
       });
     } else {

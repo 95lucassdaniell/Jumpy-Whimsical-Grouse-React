@@ -290,36 +290,36 @@ const Admin = () => {
               </button>
             </div>
 
-        <div className="leads-table-container">
-          <table className="leads-table">
-            <thead>
-              <tr>
-                <th>Data</th>
-                <th>Nome</th>
-                <th>Email</th>
-                <th>Telefone</th>
-                <th>WhatsApp</th>
-              </tr>
-            </thead>
-            <tbody>
-              {leads.map((lead) => (
-                <tr key={lead.id}>
-                  <td>{formatDate(lead.createdAt)}</td>
-                  <td>{lead.name}</td>
-                  <td>{lead.email}</td>
-                  <td>{lead.phone}</td>
-                  <td>
-                    {lead.whatsappClickedAt ? (
-                      <span className="badge badge-success">✓ Clicou</span>
-                    ) : (
-                      <span className="badge badge-pending">Pendente</span>
-                    )}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+            <div className="leads-table-container">
+              <table className="leads-table">
+                <thead>
+                  <tr>
+                    <th>Data</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Telefone</th>
+                    <th>WhatsApp</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {leads.map((lead) => (
+                    <tr key={lead.id}>
+                      <td>{formatDate(lead.createdAt)}</td>
+                      <td>{lead.name}</td>
+                      <td>{lead.email}</td>
+                      <td>{lead.phone}</td>
+                      <td>
+                        {lead.whatsappClickedAt ? (
+                          <span className="badge badge-success">✓ Clicou</span>
+                        ) : (
+                          <span className="badge badge-pending">Pendente</span>
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
 
             {totalPages > 1 && (
               <div className="pagination">
