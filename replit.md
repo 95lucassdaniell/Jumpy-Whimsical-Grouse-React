@@ -23,6 +23,8 @@ This is a full-stack React + Node.js application for "Minha T-Shirt," a wholesal
 **November 17, 2025 - Design Updates**
 - Updated primary branding color to #ec56b5 (vibrant pink)
 - Replaced text logo with colorful Minha T-Shirt logo image in navigation
+- **Simplified Navigation**: Removed all menu links (Quem Somos, Produtos, Vantagens, Depoimentos, Contato) - header now shows only logo and CTA buttons
+- **Contact Form Styling**: Updated input borders from 2px to 1px (matching card style), full-width layout for better visual consistency
 - Enhanced team section: increased team photo to 140px with better styling
 - Updated page title to "Minha T-Shirt - Atacado" with pt-BR language attribute
 - Unified all CTA buttons to scroll to contact section (#contato) for conversion optimization
