@@ -96,154 +96,6 @@ const Home = (props) => {
             </div>
           </div>
         </section>
-        <section className="contact-card">
-          <div className="cta-panel">
-            <h2 className="hero-title">
-              Pronta para transformar seu sonho em renda?
-            </h2>
-            <p className="section-content">
-              {' '}
-              Fale agora com uma consultora pelo WhatsApp e ganhe atendimento
-              personalizado para montar seu negócio de revenda com segurança e
-              lucro real.
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: ' ',
-                }}
-              />
-            </p>
-            <div className="cta-panel__features">
-              <div className="cta-panel__feature">
-                <svg
-                  width="24"
-                  xmlns="http://www.w3.org/2000/svg"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M20 6L9 17l-5-5"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  ></path>
-                </svg>
-                <span>Orientação completa sobre catálogo e margens</span>
-              </div>
-              <div className="cta-panel__feature">
-                <svg
-                  width="24"
-                  xmlns="http://www.w3.org/2000/svg"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M20 6L9 17l-5-5"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  ></path>
-                </svg>
-                <span>Suporte na primeira compra até seu primeiro pedido</span>
-              </div>
-              <div className="cta-panel__feature">
-                <svg
-                  width="24"
-                  xmlns="http://www.w3.org/2000/svg"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M20 6L9 17l-5-5"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  ></path>
-                </svg>
-                <span>Resposta rápida e acompanhamento personalizado</span>
-              </div>
-            </div>
-            <a href="https://atacado.minhatshirt.com.br/#formulario-wpp">
-              <div
-                aria-label="Falar com consultora no WhatsApp"
-                className="btn btn-primary btn-lg whatsapp-cta"
-              >
-                <svg
-                  width="24"
-                  xmlns="http://www.w3.org/2000/svg"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233a14 14 0 0 0 6.392 6.384"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  ></path>
-                </svg>
-                <span>
-                  {' '}
-                  Falar com Consultora Agora
-                  <span
-                    dangerouslySetInnerHTML={{
-                      __html: ' ',
-                    }}
-                  />
-                </span>
-              </div>
-            </a>
-          </div>
-          <div className="credentials">
-            <div className="credentials__badges">
-              <span className="credentials__badge">8 Anos no Mercado</span>
-              <span className="credentials__badge">93.530+ Pedidos</span>
-            </div>
-            <div className="credentials__consultant">
-              <img
-                alt="Consultora especialista em atacado"
-                src="https://images.pexels.com/photos/4467687/pexels-photo-4467687.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1500"
-                loading="lazy"
-                className="credentials__photo"
-              />
-              <div className="credentials__info">
-                <h3 className="credentials__name">Equipe Especializada</h3>
-                <p className="credentials__role">
-                  Consultoras prontas para ajudar você
-                </p>
-              </div>
-            </div>
-            <div className="credentials__trust">
-              <svg
-                width="20"
-                xmlns="http://www.w3.org/2000/svg"
-                height="20"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                ></path>
-              </svg>
-              <p>Atendimento seguro e confiável desde 2017</p>
-            </div>
-          </div>
-        </section>
         <section
           role="region"
           aria-labelledby="about-heading"
@@ -1270,6 +1122,154 @@ const Home = (props) => {
                 </span>
               </div>
             </a>
+          </div>
+        </section>
+        <section className="contact-card">
+          <div className="cta-panel">
+            <h2 className="hero-title">
+              Pronta para transformar seu sonho em renda?
+            </h2>
+            <p className="section-content">
+              {' '}
+              Fale agora com uma consultora pelo WhatsApp e ganhe atendimento
+              personalizado para montar seu negócio de revenda com segurança e
+              lucro real.
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: ' ',
+                }}
+              />
+            </p>
+            <div className="cta-panel__features">
+              <div className="cta-panel__feature">
+                <svg
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M20 6L9 17l-5-5"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  ></path>
+                </svg>
+                <span>Orientação completa sobre catálogo e margens</span>
+              </div>
+              <div className="cta-panel__feature">
+                <svg
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M20 6L9 17l-5-5"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  ></path>
+                </svg>
+                <span>Suporte na primeira compra até seu primeiro pedido</span>
+              </div>
+              <div className="cta-panel__feature">
+                <svg
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M20 6L9 17l-5-5"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  ></path>
+                </svg>
+                <span>Resposta rápida e acompanhamento personalizado</span>
+              </div>
+            </div>
+            <a href="https://atacado.minhatshirt.com.br/#formulario-wpp">
+              <div
+                aria-label="Falar com consultora no WhatsApp"
+                className="btn btn-primary btn-lg whatsapp-cta"
+              >
+                <svg
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233a14 14 0 0 0 6.392 6.384"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  ></path>
+                </svg>
+                <span>
+                  {' '}
+                  Falar com Consultora Agora
+                  <span
+                    dangerouslySetInnerHTML={{
+                      __html: ' ',
+                    }}
+                  />
+                </span>
+              </div>
+            </a>
+          </div>
+          <div className="credentials">
+            <div className="credentials__badges">
+              <span className="credentials__badge">8 Anos no Mercado</span>
+              <span className="credentials__badge">93.530+ Pedidos</span>
+            </div>
+            <div className="credentials__consultant">
+              <img
+                alt="Consultora especialista em atacado"
+                src="https://images.pexels.com/photos/4467687/pexels-photo-4467687.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1500"
+                loading="lazy"
+                className="credentials__photo"
+              />
+              <div className="credentials__info">
+                <h3 className="credentials__name">Equipe Especializada</h3>
+                <p className="credentials__role">
+                  Consultoras prontas para ajudar você
+                </p>
+              </div>
+            </div>
+            <div className="credentials__trust">
+              <svg
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+                height="20"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                ></path>
+              </svg>
+              <p>Atendimento seguro e confiável desde 2017</p>
+            </div>
           </div>
         </section>
       </div>
