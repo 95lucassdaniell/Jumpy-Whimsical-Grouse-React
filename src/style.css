@@ -2498,8 +2498,8 @@
   }
   .hero__visual {
     order: -1;
-    transform: translateY(-12%);
-    max-height: 40vh;
+    transform: none;
+    max-height: none;
   }
   .process__intro {
     grid-column: 1 / -1;
