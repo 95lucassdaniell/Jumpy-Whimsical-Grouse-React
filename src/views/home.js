@@ -561,12 +561,6 @@ const Home = (props) => {
               <span className="process__stat-number">3 dias</span>
               <span className="process__stat-label">Envio rápido</span>
             </div>
-            <img
-              alt="Revendedora de sucesso com produtos"
-              src="https://images.pexels.com/photos/7552059/pexels-photo-7552059.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1500"
-              loading="lazy"
-              className="process__proof-image"
-            />
           </div>
         </section>
         <section
