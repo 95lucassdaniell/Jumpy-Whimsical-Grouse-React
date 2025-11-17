@@ -13,6 +13,8 @@ This is a client-side React application for "Empreenda T-Shirt," a wholesale t-s
 - Fixed banner image display issue: moved store photo from `attached_assets/` to `public/banner-loja.jpg` for proper CRA asset serving
 - Updated primary branding color to #ec56b5 (vibrant pink)
 - Banner now displays authentic store photo showcasing colorful product displays
+- Replaced text logo "Empreenda T-Shirt" with colorful Minha T-Shirt logo image in navigation
+- Reduced section spacing between hero and about sections for better desktop layout (removed min-height: 100vh from hero)
 
 ## User Preferences
 
