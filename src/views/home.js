@@ -1237,20 +1237,6 @@ const Home = (props) => {
               <span className="credentials__badge">8 Anos no Mercado</span>
               <span className="credentials__badge">93.530+ Pedidos</span>
             </div>
-            <div className="credentials__stats">
-              <div className="credentials__stat">
-                <span className="credentials__stat-number">53k+</span>
-                <span className="credentials__stat-label">Revendedoras</span>
-              </div>
-              <div className="credentials__stat">
-                <span className="credentials__stat-number">200%</span>
-                <span className="credentials__stat-label">Lucro</span>
-              </div>
-              <div className="credentials__stat">
-                <span className="credentials__stat-number">3 dias</span>
-                <span className="credentials__stat-label">Envio</span>
-              </div>
-            </div>
             <div className="credentials__consultant">
               <img
                 alt="Consultora especialista em atacado"

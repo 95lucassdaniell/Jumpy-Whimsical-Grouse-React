@@ -1942,13 +1942,14 @@
 }
  
 .credentials__consultant {
-  gap: var(--spacing-md);
+  gap: var(--spacing-lg);
   border: 1px solid var(--color-border);
   display: flex;
-  padding: var(--spacing-lg);
+  padding: var(--spacing-2xl);
   background: var(--color-surface-elevated);
   align-items: center;
   border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-level-2);
 }
  
 .credentials__trust {
@@ -2127,8 +2128,8 @@
 }
  
 .credentials__photo {
-  width: 80px;
-  height: 80px;
+  width: 140px;
+  height: 140px;
   object-fit: cover;
   flex-shrink: 0;
   border-radius: var(--border-radius-lg);
