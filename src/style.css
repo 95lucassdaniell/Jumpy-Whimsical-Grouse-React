@@ -2770,7 +2770,7 @@
     padding: var(--spacing-md);
   }
   .features {
-    padding: var(--spacing-md);
+    padding: 0;
   }
   .features__content {
     padding: var(--spacing-2xl) var(--spacing-md);
