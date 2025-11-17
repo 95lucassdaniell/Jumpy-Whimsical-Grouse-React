@@ -2178,10 +2178,6 @@
   box-shadow: var(--shadow-level-2);
 }
  
-.testimonials__card-stack  .testimonials__card {
-  padding: var(--spacing-lg);
-}
- 
 .testimonials__rating  svg {
   color: var(--color-accent);
 }
@@ -2511,10 +2507,6 @@
   .hero__stats {
     flex-direction: column;
   }
-  .testimonials__card-stack {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
   .credentials__stats {
     gap: var(--spacing-sm);
   }
@@ -2626,9 +2618,6 @@
   }
   .features__card {
     padding: var(--spacing-sm);
-  }
-  .testimonials__card-stack {
-    grid-template-columns: 1fr;
   }
   .whatsapp-cta {
     width: calc(100% - var(--spacing-lg) * 2);
