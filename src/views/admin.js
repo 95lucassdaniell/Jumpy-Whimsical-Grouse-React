@@ -9,10 +9,17 @@ const Admin = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   
+  const [activeTab, setActiveTab] = useState('leads');
+  
   const [summary, setSummary] = useState(null);
   const [leads, setLeads] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  
+  const [abandonedStats, setAbandonedStats] = useState(null);
+  const [abandonedSignups, setAbandonedSignups] = useState([]);
+  const [abandonedPage, setAbandonedPage] = useState(1);
+  const [abandonedTotalPages, setAbandonedTotalPages] = useState(1);
   
   const history = useHistory();
 
@@ -25,6 +32,12 @@ const Admin = () => {
       loadData();
     }
   }, [isLoggedIn, currentPage]);
+
+  useEffect(() => {
+    if (isLoggedIn && activeTab === 'abandoned') {
+      loadAbandonedData();
+    }
+  }, [isLoggedIn, activeTab, abandonedPage]);
 
   const checkAuth = async () => {
     try {
@@ -104,8 +117,34 @@ const Admin = () => {
     }
   };
 
+  const loadAbandonedData = async () => {
+    try {
+      const [statsRes, signupsRes] = await Promise.all([
+        fetch('/api/abandoned-signups/stats', { credentials: 'include' }),
+        fetch(`/api/abandoned-signups?page=${abandonedPage}&limit=20`, { credentials: 'include' })
+      ]);
+
+      if (statsRes.ok) {
+        const statsData = await statsRes.json();
+        setAbandonedStats(statsData);
+      }
+
+      if (signupsRes.ok) {
+        const signupsData = await signupsRes.json();
+        setAbandonedSignups(signupsData.signups);
+        setAbandonedTotalPages(signupsData.pagination.totalPages);
+      }
+    } catch (error) {
+      console.error('Error loading abandoned data:', error);
+    }
+  };
+
   const handleExportCSV = () => {
     window.open('/api/leads?format=csv', '_blank');
+  };
+
+  const handleExportAbandonedCSV = () => {
+    window.open('/api/abandoned-signups/export', '_blank');
   };
 
   const formatDate = (dateString) => {
@@ -182,57 +221,74 @@ const Admin = () => {
         </div>
       </div>
 
-      {summary && (
-        <div className="dashboard-stats">
-          <div className="stat-card">
-            <div className="stat-icon">👁️</div>
-            <div className="stat-content">
-              <div className="stat-value">{summary.totalVisits}</div>
-              <div className="stat-label">Visitas Totais</div>
-            </div>
-          </div>
+      <div className="admin-tabs">
+        <button
+          className={`tab-button ${activeTab === 'leads' ? 'tab-active' : ''}`}
+          onClick={() => setActiveTab('leads')}
+        >
+          📝 Leads Completos
+        </button>
+        <button
+          className={`tab-button ${activeTab === 'abandoned' ? 'tab-active' : ''}`}
+          onClick={() => setActiveTab('abandoned')}
+        >
+          ⚠️ Cadastros Abandonados
+        </button>
+      </div>
 
-          <div className="stat-card">
-            <div className="stat-icon">👥</div>
-            <div className="stat-content">
-              <div className="stat-value">{summary.uniqueVisitors}</div>
-              <div className="stat-label">Visitantes Únicos</div>
-            </div>
-          </div>
+      {activeTab === 'leads' && (
+        <>
+          {summary && (
+            <div className="dashboard-stats">
+              <div className="stat-card">
+                <div className="stat-icon">👁️</div>
+                <div className="stat-content">
+                  <div className="stat-value">{summary.totalVisits}</div>
+                  <div className="stat-label">Visitas Totais</div>
+                </div>
+              </div>
 
-          <div className="stat-card">
-            <div className="stat-icon">📝</div>
-            <div className="stat-content">
-              <div className="stat-value">{summary.totalLeads}</div>
-              <div className="stat-label">Leads Cadastrados</div>
-            </div>
-          </div>
+              <div className="stat-card">
+                <div className="stat-icon">👥</div>
+                <div className="stat-content">
+                  <div className="stat-value">{summary.uniqueVisitors}</div>
+                  <div className="stat-label">Visitantes Únicos</div>
+                </div>
+              </div>
 
-          <div className="stat-card">
-            <div className="stat-icon">💬</div>
-            <div className="stat-content">
-              <div className="stat-value">{summary.leadsWithWhatsApp}</div>
-              <div className="stat-label">Cliques no WhatsApp</div>
-            </div>
-          </div>
+              <div className="stat-card">
+                <div className="stat-icon">📝</div>
+                <div className="stat-content">
+                  <div className="stat-value">{summary.totalLeads}</div>
+                  <div className="stat-label">Leads Cadastrados</div>
+                </div>
+              </div>
 
-          <div className="stat-card stat-card-highlight">
-            <div className="stat-icon">📊</div>
-            <div className="stat-content">
-              <div className="stat-value">{summary.conversionRate}%</div>
-              <div className="stat-label">Taxa de Conversão</div>
-            </div>
-          </div>
-        </div>
-      )}
+              <div className="stat-card">
+                <div className="stat-icon">💬</div>
+                <div className="stat-content">
+                  <div className="stat-value">{summary.leadsWithWhatsApp}</div>
+                  <div className="stat-label">Cliques no WhatsApp</div>
+                </div>
+              </div>
 
-      <div className="leads-section">
-        <div className="leads-header">
-          <h2>Todos os Leads</h2>
-          <button onClick={handleExportCSV} className="btn btn-primary btn-export">
-            📥 Exportar CSV
-          </button>
-        </div>
+              <div className="stat-card stat-card-highlight">
+                <div className="stat-icon">📊</div>
+                <div className="stat-content">
+                  <div className="stat-value">{summary.conversionRate}%</div>
+                  <div className="stat-label">Taxa de Conversão</div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          <div className="leads-section">
+            <div className="leads-header">
+              <h2>Todos os Leads</h2>
+              <button onClick={handleExportCSV} className="btn btn-primary btn-export">
+                📥 Exportar CSV
+              </button>
+            </div>
 
         <div className="leads-table-container">
           <table className="leads-table">
@@ -265,28 +321,138 @@ const Admin = () => {
           </table>
         </div>
 
-        {totalPages > 1 && (
-          <div className="pagination">
-            <button
-              onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
-              disabled={currentPage === 1}
-              className="btn btn-outline btn-pagination"
-            >
-              ← Anterior
-            </button>
-            <span className="pagination-info">
-              Página {currentPage} de {totalPages}
-            </span>
-            <button
-              onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
-              disabled={currentPage === totalPages}
-              className="btn btn-outline btn-pagination"
-            >
-              Próxima →
-            </button>
+            {totalPages > 1 && (
+              <div className="pagination">
+                <button
+                  onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                  disabled={currentPage === 1}
+                  className="btn btn-outline btn-pagination"
+                >
+                  ← Anterior
+                </button>
+                <span className="pagination-info">
+                  Página {currentPage} de {totalPages}
+                </span>
+                <button
+                  onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                  disabled={currentPage === totalPages}
+                  className="btn btn-outline btn-pagination"
+                >
+                  Próxima →
+                </button>
+              </div>
+            )}
           </div>
-        )}
-      </div>
+        </>
+      )}
+
+      {activeTab === 'abandoned' && (
+        <>
+          {abandonedStats && (
+            <div className="dashboard-stats">
+              <div className="stat-card">
+                <div className="stat-icon">⚠️</div>
+                <div className="stat-content">
+                  <div className="stat-value">{abandonedStats.totalAbandoned}</div>
+                  <div className="stat-label">Cadastros Abandonados</div>
+                </div>
+              </div>
+
+              <div className="stat-card">
+                <div className="stat-icon">🕐</div>
+                <div className="stat-content">
+                  <div className="stat-value">{abandonedStats.recentAbandoned}</div>
+                  <div className="stat-label">Últimas 24h</div>
+                </div>
+              </div>
+
+              <div className="stat-card">
+                <div className="stat-icon">📧</div>
+                <div className="stat-content">
+                  <div className="stat-value">{abandonedStats.withEmail}</div>
+                  <div className="stat-label">Com Email</div>
+                </div>
+              </div>
+
+              <div className="stat-card">
+                <div className="stat-icon">📱</div>
+                <div className="stat-content">
+                  <div className="stat-value">{abandonedStats.withPhone}</div>
+                  <div className="stat-label">Com Telefone</div>
+                </div>
+              </div>
+
+              <div className="stat-card stat-card-highlight">
+                <div className="stat-icon">🔄</div>
+                <div className="stat-content">
+                  <div className="stat-value">{abandonedStats.recoveryRate}%</div>
+                  <div className="stat-label">Taxa de Recuperação</div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          <div className="leads-section">
+            <div className="leads-header">
+              <h2>Cadastros Não Concluídos</h2>
+              <button onClick={handleExportAbandonedCSV} className="btn btn-primary btn-export">
+                📥 Exportar CSV
+              </button>
+            </div>
+
+            <div className="abandoned-info">
+              <p>💡 Esses contatos começaram a preencher o formulário mas não completaram. Use essas informações para recuperá-los!</p>
+            </div>
+
+            <div className="leads-table-container">
+              <table className="leads-table">
+                <thead>
+                  <tr>
+                    <th>Última Atualização</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Telefone</th>
+                    <th>UTM Source</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {abandonedSignups.map((signup) => (
+                    <tr key={signup.id}>
+                      <td>{formatDate(signup.updatedAt)}</td>
+                      <td>{signup.name || <span className="text-muted">-</span>}</td>
+                      <td>{signup.email || <span className="text-muted">-</span>}</td>
+                      <td>{signup.phone || <span className="text-muted">-</span>}</td>
+                      <td>{signup.utmSource || <span className="text-muted">-</span>}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {abandonedTotalPages > 1 && (
+              <div className="pagination">
+                <button
+                  onClick={() => setAbandonedPage(p => Math.max(1, p - 1))}
+                  disabled={abandonedPage === 1}
+                  className="btn btn-outline btn-pagination"
+                >
+                  ← Anterior
+                </button>
+                <span className="pagination-info">
+                  Página {abandonedPage} de {abandonedTotalPages}
+                </span>
+                <button
+                  onClick={() => setAbandonedPage(p => Math.min(abandonedTotalPages, p + 1))}
+                  disabled={abandonedPage === abandonedTotalPages}
+                  className="btn btn-outline btn-pagination"
+                >
+                  Próxima →
+                </button>
+              </div>
+            )}
+          </div>
+        </>
+      )}
     </div>
   );
 };
