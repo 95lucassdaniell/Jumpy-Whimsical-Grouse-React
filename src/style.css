@@ -1426,6 +1426,7 @@
   margin: 0 auto;
   display: grid;
   padding: var(--spacing-4xl) var(--spacing-lg);
+  padding-top: calc(72px + 15px);
   position: relative;
   max-width: var(--content-max-width);
   background: var(--color-surface);
@@ -2768,6 +2769,7 @@
   }
   .hero {
     padding: var(--spacing-md);
+    padding-top: calc(56px + 15px);
   }
   .features {
     padding: 0;
