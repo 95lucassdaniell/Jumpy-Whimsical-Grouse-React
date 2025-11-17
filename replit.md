@@ -1,35 +1,60 @@
-# Jumpy Whimsical Grouse - React Landing Page
+# Minha T-Shirt - Full-Stack Lead Capture Platform
 
 ## Overview
 
-This is a client-side React application for "Empreenda T-Shirt," a wholesale t-shirt business targeting Brazilian women entrepreneurs. The application is a marketing landing page designed to promote financial independence through product reselling opportunities. Built with React 17 and React Router, it uses CRACO for build configuration customization and features a modern, responsive design with CSS custom properties for theming.
+This is a full-stack React + Node.js application for "Minha T-Shirt," a wholesale t-shirt business targeting Brazilian women entrepreneurs. The platform combines a marketing landing page with a complete lead capture system, including contact form validation, PostgreSQL database storage, and an administrative dashboard for lead management and analytics.
 
-**Migration Status**: Successfully migrated from Vercel to Replit on November 16, 2025. The application is configured to run on Replit's environment with proper host and port bindings.
+**Migration Status**: Successfully migrated from Vercel to Replit on November 16, 2025. Backend API added on November 17, 2025 with complete lead management system.
 
 ## Recent Changes
 
-**November 17, 2025**
-- Removed statistics cards (53.000+, 93.530+, 200%) from hero section for cleaner layout
-- Fixed banner image display issue: moved store photo from `attached_assets/` to `public/banner-loja.jpg` for proper CRA asset serving
+**November 17, 2025 - Lead Capture System**
+- **Backend Infrastructure**: Added Node.js/Express server with PostgreSQL + Prisma ORM
+- **Contact Form**: Implemented validated lead capture form (React Hook Form + Yup) in #contato section
+- **Admin Dashboard**: Created `/admin` route with authentication and comprehensive analytics
+- **Database Schema**: Created tables for leads (name, email, phone, UTM tracking), visits (session tracking), and admins
+- **APIs**: POST /api/leads, GET /api/leads (with CSV export), GET /api/analytics/summary, auth endpoints
+- **Analytics**: Automatic visit tracking integrated with GTM, conversion rate calculations
+- **Security**: bcrypt password hashing, session-based authentication, protected admin routes
+- **WhatsApp Integration**: Form submission unlocks WhatsApp button with personalized message
+- **Admin Features**: Paginated lead table, CSV export, real-time metrics (visits, leads, conversions)
+- **Deployment**: Configured concurrently to run frontend (5000) and backend (3001) together
+
+**November 17, 2025 - Design Updates**
 - Updated primary branding color to #ec56b5 (vibrant pink)
-- Banner now displays authentic store photo showcasing colorful product displays
-- Replaced text logo "Empreenda T-Shirt" with colorful Minha T-Shirt logo image in navigation
-- Reduced section spacing between hero and about sections for better desktop layout (removed min-height: 100vh from hero)
-- Reduced lateral margins in features section for better text display optimization
-- Fixed mobile hero image cropping with object-position adjustment (center 70% for proper framing)
-- Enhanced team section: removed 3 smaller cards (53k+, 200%, 3 dias) and increased team photo from 80px to 140px with better styling
-- Standardized lateral margins across About and Features sections for consistent spacing on mobile
-- Made features section full-width on mobile (no lateral margins) for better space utilization
-- Updated page title from "Jumpy Whimsical Grouse" to "Minha T-Shirt - Atacado" 
-- Changed HTML lang attribute from "en" to "pt-BR" for proper Portuguese language declaration
-- Added header clearance spacing (87px desktop, 71px mobile) to prevent hero content from being hidden under fixed navigation
-- Unified all CTA buttons to scroll to contact section (#contato) for improved conversion funnel
-- Implemented Google Tag Manager tracking (GTM-P3RGJRKK) in head and body for analytics
+- Replaced text logo with colorful Minha T-Shirt logo image in navigation
+- Enhanced team section: increased team photo to 140px with better styling
+- Updated page title to "Minha T-Shirt - Atacado" with pt-BR language attribute
+- Unified all CTA buttons to scroll to contact section (#contato) for conversion optimization
+- Implemented Google Tag Manager tracking (GTM-P3RGJRKK) for analytics
+- Fixed mobile hero image positioning and section spacing optimizations
 
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
 Branding: Primary color #ec56b5 (vibrant pink)
+
+## Admin Access
+
+**Login URL**: `/admin`
+**Default Credentials**:
+- Username: `admin`
+- Password: `admin123`
+⚠️ **IMPORTANTE**: Altere a senha após o primeiro login usando o script em `server/src/utils/createAdmin.js`
+
+## Database Schema
+
+**Leads Table**: Stores contact form submissions
+- id, name, email, phone, createdAt
+- UTM tracking: utmSource, utmMedium, utmCampaign
+- whatsappClickedAt: Timestamp when user clicked WhatsApp button
+
+**Visits Table**: Tracks page visits for analytics
+- id, visitedAt, sessionId, ipHash, page
+- UTM tracking and referrer information
+
+**Admins Table**: Admin user authentication
+- id, username, password (bcrypt hashed)
 
 ## System Architecture
 
@@ -44,7 +69,8 @@ Branding: Primary color #ec56b5 (vibrant pink)
 **Routing Strategy**
 - **React Router DOM 5.2.0** for client-side navigation
 - Route structure:
-  - `/` - Home page (primary landing page)
+  - `/` - Home page (primary landing page with contact form)
+  - `/admin` - Protected admin dashboard (requires authentication)
   - `**` - Catch-all route redirecting to NotFound component
 - Browser-based routing (BrowserRouter) for clean URLs without hash fragments
 

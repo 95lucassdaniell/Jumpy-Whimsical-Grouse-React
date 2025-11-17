@@ -12,3 +12,18 @@ yarn-error.log*
 *.swo
 .vscode/
 .idea/
+
+# Server environment
+server/.env
+server/.env.local
+
+# Database
+*.db
+*.sqlite
+
+# Logs
+logs/
+*.log
+
+# OS
+.DS_Store
