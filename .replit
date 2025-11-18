@@ -38,6 +38,10 @@ localPort = 5000
 externalPort = 80
 
 [[ports]]
+localPort = 5001
+externalPort = 5000
+
+[[ports]]
 localPort = 33349
 externalPort = 4200
 
@@ -54,6 +58,6 @@ localPort = 42713
 externalPort = 3001
 
 [deployment]
-deploymentTarget = "gce"
-run = ["npx", "serve", "-s", "build", "-l", "5000"]
+deploymentTarget = "autoscale"
+run = ["node", "server/src/production.js"]
 build = ["npm", "run", "build"]
