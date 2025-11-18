@@ -1623,10 +1623,13 @@
   animation: heroFadeIn var(--animation-duration-standard)
       var(--animation-curve-primary) forwards;
   transform: translateY(8px);
+  z-index: 2;
   background: var(--color-surface-elevated);
   box-shadow: var(--shadow-level-1);
   border-radius: var(--border-radius-lg);
   flex-direction: column;
+  position: relative;
+  z-index: 2;
 }
 
 .hero__content > a {
@@ -1648,6 +1651,7 @@
   transform: translateX(-6px);
   align-items: center;
   justify-content: center;
+  z-index: 1;
 }
  
  
@@ -2685,6 +2689,12 @@
   }
   .features__grid {
     grid-template-columns: 1fr;
+  }
+  .hero__visual {
+    padding: 0;
+    margin-left: calc(-1 * var(--spacing-lg));
+    margin-right: calc(-1 * var(--spacing-lg));
+    width: calc(100% + (2 * var(--spacing-lg)));
   }
 }
  
