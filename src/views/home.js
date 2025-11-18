@@ -66,8 +66,8 @@ const Home = (props) => {
             </p>
             <p className="hero__body">
               {' '}
-              Nossa experiência desde 2017, mais de 93.530 pedidos entregues e
-              uma rede de 53.000 revendedoras garantem suporte consistente para
+              Nossa experiência desde 2017, mais de 200 mil pedidos entregues e
+              uma rede de 80.000 revendedoras garantem suporte consistente para
               sua jornada empreendedora.
               <span
                 dangerouslySetInnerHTML={{
