@@ -18,6 +18,18 @@ This is a full-stack React + Node.js application for "Minha T-Shirt," a wholesal
 - **UX Flow**: Lead fills form → Success message → 3-second countdown → Auto-redirect to configured URL
 - **Bug Fix**: Corrected setInterval cleanup in React useEffect to ensure countdown timer functions properly
 
+**November 18, 2025 - Mobile Hero Image Overlay Effect**
+- **Mobile Layout Enhancement**: Implemented "card emerging from behind image" effect on mobile (≤767px)
+- **Technical Implementation**:
+  - Removed horizontal padding from `.hero` section on mobile to allow full-width image
+  - Set `.hero__visual` to `width: 100%` with `margin: 0` for edge-to-edge display
+  - Applied `transform: translateY(-1.5rem)` to `.hero__content` to create vertical overlap
+  - Configured z-index layering: card (z-index: 2) above image (z-index: 1)
+  - Added `overflow-x: hidden` to prevent horizontal scrolling
+  - Set `.hero` padding-top to 7rem (112px) to ensure 88px clearance below fixed 72px header
+- **Visual Effect**: On mobile, hero image spans full viewport width while white content card overlaps it from below, creating modern, engaging layered design
+- **Safety Margin**: 16px clearance buffer accounts for browser zoom, rem rounding, and device variations
+
 **November 18, 2025 - Content & Layout Updates**
 - **Statistics Update**: Updated scale metrics throughout site to "200 mil pedidos entregues" and "80.000 revendedoras" in hero section
 - **Statistics Formatting**: Changed statistics display from "200000+" to "200 mil+" for better readability and mobile responsiveness
