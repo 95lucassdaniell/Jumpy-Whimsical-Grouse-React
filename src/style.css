@@ -2486,7 +2486,7 @@
     grid-column: 1 / -1;
   }
   .hero {
-    padding: var(--spacing-3xl);
+    padding: 7rem 0 var(--spacing-3xl);
     min-height: auto;
     align-items: start;
     grid-template-columns: 1fr;
@@ -2690,11 +2690,18 @@
   .features__grid {
     grid-template-columns: 1fr;
   }
+  .hero {
+    overflow-x: hidden;
+  }
   .hero__visual {
     padding: 0;
-    margin-left: calc(-1 * var(--spacing-lg));
-    margin-right: calc(-1 * var(--spacing-lg));
-    width: calc(100% + (2 * var(--spacing-lg)));
+    width: 100%;
+    margin: 0;
+  }
+  .hero__content {
+    inline-size: min(90vw, 450px);
+    margin-inline: auto;
+    transform: translateY(-1.5rem);
   }
 }
  
