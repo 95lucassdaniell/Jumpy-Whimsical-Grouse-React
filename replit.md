@@ -8,6 +8,16 @@ This is a full-stack React + Node.js application for "Minha T-Shirt," a wholesal
 
 ## Recent Changes
 
+**November 18, 2025 - Post-Form Redirect System**
+- **Redirect System**: Implemented automatic redirect after form submission with 3-second countdown
+- **Settings Table**: Created database table to store redirect URL and enable/disable toggle
+- **Admin Settings Panel**: New "Configurações" tab in admin dashboard with form to manage redirect URL
+- **Countdown UI**: Visual countdown timer shows "Redirecionando em X segundos..." with styled display
+- **API Endpoints**: GET /api/settings (public) and PATCH /api/settings (admin-protected) for managing settings
+- **Default Configuration**: Redirect URL set to https://sige.letgrupo.com.br/link/atacado-comercial
+- **UX Flow**: Lead fills form → Success message → 3-second countdown → Auto-redirect to configured URL
+- **Bug Fix**: Corrected setInterval cleanup in React useEffect to ensure countdown timer functions properly
+
 **November 18, 2025 - Content & Layout Updates**
 - **Statistics Update**: Updated scale metrics throughout site to "200 mil pedidos entregues" and "80.000 revendedoras" in hero section
 - **Statistics Formatting**: Changed statistics display from "200000+" to "200 mil+" for better readability and mobile responsiveness
@@ -74,6 +84,14 @@ Branding: Primary color #ec56b5 (vibrant pink)
 
 **Admins Table**: Admin user authentication
 - id, username, password (bcrypt hashed)
+
+**AbandonedSignups Table**: Tracks incomplete form submissions
+- id, sessionId, name, email, phone, createdAt, updatedAt
+- UTM tracking, completedAt, ipHash
+
+**Settings Table**: System configuration storage
+- id, key (unique), value, updatedAt
+- Key-value pairs for redirect URL and enable/disable toggle
 
 ## System Architecture
 
