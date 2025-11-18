@@ -35,7 +35,7 @@ This is a full-stack React + Node.js application for "Minha T-Shirt," a wholesal
 - **Simplified Navigation**: Removed all menu links (Quem Somos, Produtos, Vantagens, Depoimentos, Contato) - header now shows only logo and CTA buttons
 - **Contact Form Styling - Modern Floating Label Design**: 
   - Inputs redesigned with floating labels that sit on the border (modern UI pattern)
-  - Border changed to 2px solid black (#333333) for better visual hierarchy
+  - Border: 1px solid #333333 for clean, minimal appearance
   - Labels positioned with white background overlay on border
   - Full-width layout for better visual consistency
   - Enhanced focus states with subtle shadow effects
