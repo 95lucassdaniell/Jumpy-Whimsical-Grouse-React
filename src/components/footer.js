@@ -18,7 +18,7 @@ const Footer = (props) => {
                 </div>
                 <p className="footer-brand-description">
                   {' '}
-                  Mais de 53 mil mulheres conquistando independência financeira
+                  Mais de 80 mil mulheres conquistando independência financeira
                   através da revenda das nossas peças. Junte-se a nós e comece
                   seu próprio negócio.
                   <span
