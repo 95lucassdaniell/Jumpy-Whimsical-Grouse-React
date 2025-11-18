@@ -10,6 +10,7 @@ This is a full-stack React + Node.js application for "Minha T-Shirt," a wholesal
 
 **November 18, 2025 - Content & Layout Updates**
 - **Statistics Update**: Updated scale metrics throughout site to "200 mil pedidos entregues" and "80.000 revendedoras" in hero section
+- **Statistics Formatting**: Changed statistics display from "200000+" to "200 mil+" for better readability and mobile responsiveness
 - **Benefits Section**: Revised messaging - profit margin to "Revenda por 3x o valor", shipping time to "72 horas", payment terms to "Pix ou 3x no cartão sem juros"
 - **Layout Reorganization**: Moved "Quem é a Minha T-Shirt?" section to appear after the final CTA section (#contato) for improved conversion flow
 - **Team Photo**: Replaced placeholder consultant image with actual team photo (equipe-comercial.jpg) in credentials section

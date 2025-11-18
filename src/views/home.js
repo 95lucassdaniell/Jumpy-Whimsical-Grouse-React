@@ -591,7 +591,7 @@ const Home = (props) => {
           <div className="process__sidebar">
             <div className="process__proof">
               <div className="process__stat">
-                <span className="process__stat-number">200000+</span>
+                <span className="process__stat-number">200 mil+</span>
                 <span className="process__stat-label">Pedidos entregues</span>
               </div>
               <div className="process__stat">
@@ -1190,7 +1190,7 @@ const Home = (props) => {
           <div className="credentials">
             <div className="credentials__badges">
               <span className="credentials__badge">8 Anos no Mercado</span>
-              <span className="credentials__badge">200000+ Pedidos</span>
+              <span className="credentials__badge">200 mil+ Pedidos</span>
             </div>
             <div className="credentials__consultant">
               <img
