@@ -104,26 +104,6 @@ const Home = (props) => {
         </section>
         <section
           role="region"
-          aria-labelledby="about-heading"
-          className="about"
-        >
-          <h2 id="about-heading" className="section-title">
-            Quem é a Minha T-Shirt?
-          </h2>
-          <div className="about__content">
-            <p className="about__text">
-              Uma marca de roupas nacional, orgulhosamente Goiana, única e diferente. Com nossa identidade visual cheia de personalidade, a Minha T-shirt é divertida, moderna, motivada e criativa.
-            </p>
-            <p className="about__text">
-              Somos movidos pelas tendências e demandas de vocês, nossas clientes. Desenvolvemos t-shirt, cropped, moletom, blusa de manga longa e entre outras peças maravilhosas, que fazem parte dos nossos catálogos que atendem cada vez mais pessoas. Somos uma empresa que não vende somente roupas, trabalhamos juntas para buscarmos cada vez mais a independência financeira da mulher, realização de sonhos e com isso, a construção de uma vida melhor.
-            </p>
-            <p className="about__text about__text--highlight">
-              Buscamos levar nossas clientes com a gente, sempre JUNTAS!
-            </p>
-          </div>
-        </section>
-        <section
-          role="region"
           aria-labelledby="features-heading"
           className="features"
         >
@@ -1245,6 +1225,26 @@ const Home = (props) => {
               </svg>
               <p>Atendimento seguro e confiável desde 2017</p>
             </div>
+          </div>
+        </section>
+        <section
+          role="region"
+          aria-labelledby="about-heading"
+          className="about"
+        >
+          <h2 id="about-heading" className="section-title">
+            Quem é a Minha T-Shirt?
+          </h2>
+          <div className="about__content">
+            <p className="about__text">
+              Uma marca de roupas nacional, orgulhosamente Goiana, única e diferente. Com nossa identidade visual cheia de personalidade, a Minha T-shirt é divertida, moderna, motivada e criativa.
+            </p>
+            <p className="about__text">
+              Somos movidos pelas tendências e demandas de vocês, nossas clientes. Desenvolvemos t-shirt, cropped, moletom, blusa de manga longa e entre outras peças maravilhosas, que fazem parte dos nossos catálogos que atendem cada vez mais pessoas. Somos uma empresa que não vende somente roupas, trabalhamos juntas para buscarmos cada vez mais a independência financeira da mulher, realização de sonhos e com isso, a construção de uma vida melhor.
+            </p>
+            <p className="about__text about__text--highlight">
+              Buscamos levar nossas clientes com a gente, sempre JUNTAS!
+            </p>
           </div>
         </section>
       </div>
