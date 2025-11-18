@@ -8,6 +8,9 @@ This is a full-stack React + Node.js application for "Minha T-Shirt," a wholesal
 
 ## Recent Changes
 
+**November 18, 2025 - Statistics Badge Update**
+- **Trust Badge Update**: Changed credentials section badge from "53k Revendedoras" to "80k Revendedoras" to reflect current business scale
+
 **November 18, 2025 - Post-Form Redirect System**
 - **Redirect System**: Implemented automatic redirect after form submission with 3-second countdown
 - **Settings Table**: Created database table to store redirect URL and enable/disable toggle

@@ -57,6 +57,10 @@ externalPort = 3000
 localPort = 42713
 externalPort = 3001
 
+[[ports]]
+localPort = 46761
+externalPort = 5173
+
 [deployment]
 deploymentTarget = "autoscale"
 run = ["node", "server/src/production.js"]

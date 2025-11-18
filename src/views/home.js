@@ -170,7 +170,7 @@ const Home = (props) => {
                     <circle r="4" cx="9" cy="7"></circle>
                   </g>
                 </svg>
-                <span>53k Revendedoras</span>
+                <span>80k Revendedoras</span>
               </div>
             </div>
           </div>
