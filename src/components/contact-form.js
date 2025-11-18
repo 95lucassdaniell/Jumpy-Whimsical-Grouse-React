@@ -180,27 +180,16 @@ const ContactForm = () => {
     }
   };
 
-  const handleWhatsAppClick = async () => {
-    if (leadId) {
-      try {
-        await fetch(`/api/leads/${leadId}/whatsapp-click`, {
-          method: 'PATCH'
+  const handleButtonClick = () => {
+    if (redirectUrl) {
+      if (window.dataLayer) {
+        window.dataLayer.push({
+          event: 'redirect_button_click',
+          redirect_url: redirectUrl
         });
-        
-        if (window.dataLayer) {
-          window.dataLayer.push({
-            event: 'whatsapp_click',
-            lead_id: leadId
-          });
-        }
-      } catch (error) {
-        console.error('Error recording WhatsApp click:', error);
       }
+      window.location.href = redirectUrl;
     }
-    
-    const whatsappNumber = '5511999999999';
-    const message = encodeURIComponent('Olá! Gostaria de saber mais sobre revender t-shirts no atacado.');
-    window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
   };
 
   if (isSubmitted) {
@@ -217,9 +206,10 @@ const ContactForm = () => {
           </div>
         )}
         <button 
-          onClick={handleWhatsAppClick}
-          className="btn btn-primary btn-whatsapp"
-          aria-label="Falar com consultora pelo WhatsApp"
+          onClick={handleButtonClick}
+          className="btn btn-primary btn-redirect"
+          aria-label="Falar com consultora agora"
+          disabled={!redirectUrl}
         >
           <svg
             width="20"
