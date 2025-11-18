@@ -8,6 +8,12 @@ This is a full-stack React + Node.js application for "Minha T-Shirt," a wholesal
 
 ## Recent Changes
 
+**November 18, 2025 - Content & Layout Updates**
+- **Statistics Update**: Updated scale metrics throughout site to "200 mil pedidos entregues" and "80.000 revendedoras" in hero section
+- **Benefits Section**: Revised messaging - profit margin to "Revenda por 3x o valor", shipping time to "72 horas", payment terms to "Pix ou 3x no cartão sem juros"
+- **Layout Reorganization**: Moved "Quem é a Minha T-Shirt?" section to appear after the final CTA section (#contato) for improved conversion flow
+- **Team Photo**: Replaced placeholder consultant image with actual team photo (equipe-comercial.jpg) in credentials section
+
 **November 17, 2025 - Lead Capture System**
 - **Backend Infrastructure**: Added Node.js/Express server with PostgreSQL + Prisma ORM
 - **Contact Form**: Implemented validated lead capture form (React Hook Form + Yup) in #contato section

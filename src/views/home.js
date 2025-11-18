@@ -1194,8 +1194,8 @@ const Home = (props) => {
             </div>
             <div className="credentials__consultant">
               <img
-                alt="Consultora especialista em atacado"
-                src="https://images.pexels.com/photos/4467687/pexels-photo-4467687.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1500"
+                alt="Equipe Comercial Minha T-Shirt"
+                src="/equipe-comercial.jpg"
                 loading="lazy"
                 className="credentials__photo"
               />
