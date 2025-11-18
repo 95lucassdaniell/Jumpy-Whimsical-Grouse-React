@@ -228,7 +228,7 @@ const Home = (props) => {
                 </g>
               </svg>
               <h3 id="benefit-1" className="features__card-title">
-                Lucro de até 200%
+                Revenda por 3x o valor
               </h3>
               <p className="features__card-body">
                 {' '}
@@ -263,7 +263,7 @@ const Home = (props) => {
               </svg>
               <h3 id="benefit-2" className="features__card-title">
                 {' '}
-                Envio em 3 dias úteis
+                Envio em 72 horas
                 <span
                   dangerouslySetInnerHTML={{
                     __html: ' ',
@@ -376,7 +376,7 @@ const Home = (props) => {
                 </g>
               </svg>
               <h3 id="benefit-5" className="features__card-title">
-                Pix ou 3x sem juros
+                Pix ou 3x no cartão sem juros
               </h3>
               <p className="features__card-body">
                 {' '}
@@ -611,7 +611,7 @@ const Home = (props) => {
           <div className="process__sidebar">
             <div className="process__proof">
               <div className="process__stat">
-                <span className="process__stat-number">93.530+</span>
+                <span className="process__stat-number">200000+</span>
                 <span className="process__stat-label">Pedidos entregues</span>
               </div>
               <div className="process__stat">
@@ -619,7 +619,7 @@ const Home = (props) => {
                 <span className="process__stat-label">Construindo sonhos</span>
               </div>
               <div className="process__stat">
-                <span className="process__stat-number">3 dias</span>
+                <span className="process__stat-number">72 horas úteis</span>
                 <span className="process__stat-label">Envio rápido</span>
               </div>
             </div>
@@ -1210,7 +1210,7 @@ const Home = (props) => {
           <div className="credentials">
             <div className="credentials__badges">
               <span className="credentials__badge">8 Anos no Mercado</span>
-              <span className="credentials__badge">93.530+ Pedidos</span>
+              <span className="credentials__badge">200000+ Pedidos</span>
             </div>
             <div className="credentials__consultant">
               <img

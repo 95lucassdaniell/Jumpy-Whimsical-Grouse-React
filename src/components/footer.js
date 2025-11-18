@@ -70,7 +70,7 @@ const Footer = (props) => {
                       </svg>
                     </div>
                     <span className="footer-badge-text">
-                      Envio em até 3 dias
+                      Envio em até 72 horas
                     </span>
                   </div>
                 </div>
