@@ -8,6 +8,13 @@ This is a full-stack React + Node.js application for "Minha T-Shirt," a wholesal
 
 ## Recent Changes
 
+**November 18, 2025 - Abandoned Signups Auto-Completion**
+- **Smart Lead Tracking**: When a lead is created, system automatically marks matching abandoned signups as completed
+- **Matching Logic**: Uses OR condition - if email OR phone matches, abandoned signup is marked with completedAt timestamp
+- **Implementation**: Added updateMany query in createLead controller after successful lead creation
+- **Database Efficiency**: Only updates abandoned signups where completedAt is null (prevents re-processing)
+- **Tested Scenarios**: ✅ Email match ✅ Phone match ✅ Multiple abandoned signups handling
+
 **November 18, 2025 - Statistics Badge Update**
 - **Trust Badge Update**: Changed credentials section badge from "53k Revendedoras" to "80k Revendedoras" to reflect current business scale
 
