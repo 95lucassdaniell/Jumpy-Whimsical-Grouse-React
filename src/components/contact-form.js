@@ -26,6 +26,8 @@ const ContactForm = () => {
   const [leadId, setLeadId] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', phone: '' });
+  const [countdown, setCountdown] = useState(3);
+  const [redirectUrl, setRedirectUrl] = useState('');
   const saveTimeoutRef = useRef(null);
   const sessionIdRef = useRef(getOrCreateSessionId());
   
@@ -84,6 +86,45 @@ const ContactForm = () => {
     });
     return () => subscription.unsubscribe();
   }, [watch, formData]);
+
+  useEffect(() => {
+    if (!isSubmitted) return;
+
+    let timer = null;
+    
+    const fetchSettings = async () => {
+      try {
+        const response = await fetch('/api/settings');
+        const data = await response.json();
+        
+        if (data.settings.redirectEnabled === 'true' && data.settings.redirectUrl) {
+          setRedirectUrl(data.settings.redirectUrl);
+          setCountdown(3);
+          
+          timer = setInterval(() => {
+            setCountdown((prev) => {
+              if (prev <= 1) {
+                clearInterval(timer);
+                window.location.href = data.settings.redirectUrl;
+                return 0;
+              }
+              return prev - 1;
+            });
+          }, 1000);
+        }
+      } catch (error) {
+        console.error('Error fetching settings:', error);
+      }
+    };
+
+    fetchSettings();
+    
+    return () => {
+      if (timer) {
+        clearInterval(timer);
+      }
+    };
+  }, [isSubmitted]);
 
   const onSubmit = async (data) => {
     setIsLoading(true);
@@ -168,8 +209,13 @@ const ContactForm = () => {
         <div className="success-icon">✓</div>
         <h3 className="success-title">Cadastro realizado com sucesso!</h3>
         <p className="success-message">
-          Agora você pode falar com nossa consultora pelo WhatsApp
+          Obrigado pelo seu cadastro! Em instantes você será redirecionado para falar com nossa equipe.
         </p>
+        {redirectUrl && (
+          <div className="redirect-countdown">
+            <p>Redirecionando em <strong>{countdown}</strong> segundo{countdown !== 1 ? 's' : ''}...</p>
+          </div>
+        )}
         <button 
           onClick={handleWhatsAppClick}
           className="btn btn-primary btn-whatsapp"

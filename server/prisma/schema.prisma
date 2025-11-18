@@ -62,3 +62,12 @@ model AbandonedSignup {
   @@index([createdAt])
   @@map("abandoned_signups")
 }
+
+model Setting {
+  id        String   @id @default(uuid())
+  key       String   @unique
+  value     String
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("settings")
+}

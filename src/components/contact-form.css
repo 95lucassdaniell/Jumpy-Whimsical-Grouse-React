@@ -134,6 +134,26 @@
   gap: var(--spacing-sm);
 }
 
+.redirect-countdown {
+  margin: var(--spacing-lg) 0;
+  padding: var(--spacing-md);
+  background: linear-gradient(135deg, rgba(236, 86, 181, 0.1), rgba(236, 86, 181, 0.05));
+  border-radius: 12px;
+  border: 2px solid rgba(236, 86, 181, 0.2);
+}
+
+.redirect-countdown p {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--color-text-primary);
+}
+
+.redirect-countdown strong {
+  font-size: 1.5rem;
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
 @media (max-width: 768px) {
   .contact-form,
   .contact-form-success {
