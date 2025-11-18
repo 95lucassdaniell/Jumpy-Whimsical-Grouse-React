@@ -17,12 +17,10 @@ const Home = (props) => {
   return (
     <div className="home-container1">
       <Helmet>
-        <title>Jumpy Whimsical Grouse</title>
-        <meta property="og:title" content="Jumpy Whimsical Grouse" />
-        <link
-          rel="canonical"
-          href="https://jumpy-whimsical-grouse-d4noum.teleporthq.app/"
-        />
+        <title>Minha T-Shirt - Atacado</title>
+        <meta property="og:title" content="Minha T-Shirt - Atacado de Roupas Femininas" />
+        <meta property="og:description" content="Revenda t-shirts no atacado com suporte real e lucro garantido. Mais de 80.000 revendedoras conquistando independência financeira." />
+        <link rel="icon" type="image/png" href="/favicon.png" />
       </Helmet>
       <Navigation></Navigation>
       <div className="home-container2">
