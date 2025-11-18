@@ -91,29 +91,50 @@ const ContactForm = () => {
     if (!isSubmitted) return;
 
     let timer = null;
+    let retryCount = 0;
+    const MAX_RETRIES = 3;
+    const FALLBACK_URL = 'https://sige.letgrupo.com.br/link/atacado-comercial';
+    
+    const startRedirect = (url) => {
+      setRedirectUrl(url);
+      setCountdown(3);
+      
+      timer = setInterval(() => {
+        setCountdown((prev) => {
+          if (prev <= 1) {
+            clearInterval(timer);
+            window.location.href = url;
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+    };
     
     const fetchSettings = async () => {
       try {
         const response = await fetch('/api/settings');
+        
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+        
         const data = await response.json();
         
-        if (data.settings.redirectEnabled === 'true' && data.settings.redirectUrl) {
-          setRedirectUrl(data.settings.redirectUrl);
-          setCountdown(3);
-          
-          timer = setInterval(() => {
-            setCountdown((prev) => {
-              if (prev <= 1) {
-                clearInterval(timer);
-                window.location.href = data.settings.redirectUrl;
-                return 0;
-              }
-              return prev - 1;
-            });
-          }, 1000);
+        if (data.settings && data.settings.redirectEnabled === 'true' && data.settings.redirectUrl) {
+          startRedirect(data.settings.redirectUrl);
+        } else {
+          startRedirect(FALLBACK_URL);
         }
       } catch (error) {
-        console.error('Error fetching settings:', error);
+        console.error('Erro ao buscar configurações:', error);
+        
+        if (retryCount < MAX_RETRIES) {
+          retryCount++;
+          setTimeout(fetchSettings, 1000 * retryCount);
+        } else {
+          startRedirect(FALLBACK_URL);
+        }
       }
     };
 
