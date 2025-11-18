@@ -12,6 +12,7 @@ This is a full-stack React + Node.js application for "Minha T-Shirt," a wholesal
 - **Statistics Update**: Updated scale metrics throughout site to "200 mil pedidos entregues" and "80.000 revendedoras" in hero section
 - **Statistics Formatting**: Changed statistics display from "200000+" to "200 mil+" for better readability and mobile responsiveness
 - **Footer Update**: Updated footer text from "53 mil mulheres" to "80 mil mulheres" to match hero statistics
+- **Footer CTA Link**: Fixed "Falar com Consultora" button in footer to navigate to #contato section instead of external site
 - **Page Title & Favicon**: Fixed page title from "Jumpy Whimsical Grouse" to "Minha T-Shirt - Atacado" in React Helmet and added brand favicon (colorful M logo)
 - **Hero Image**: Updated hero section image to show revendedora holding Minha T-Shirt product package (transparent background)
 - **Contact Form Border**: Reduced input border from 2px to 1px for cleaner, more minimal appearance

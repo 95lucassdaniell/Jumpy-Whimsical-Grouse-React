@@ -391,7 +391,7 @@ const Footer = (props) => {
                 />
               </p>
             </div>
-            <a href="https://atacado.minhatshirt.com.br/#formulario-wpp">
+            <a href="#contato">
               <div className="btn btn-primary btn-lg">
                 <span>
                   {' '}
