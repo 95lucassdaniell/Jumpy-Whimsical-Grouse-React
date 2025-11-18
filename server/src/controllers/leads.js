@@ -18,6 +18,19 @@ async function createLead(req, res) {
       }
     });
 
+    await prisma.abandonedSignup.updateMany({
+      where: {
+        OR: [
+          { email: email },
+          { phone: phone }
+        ],
+        completedAt: null
+      },
+      data: {
+        completedAt: new Date()
+      }
+    });
+
     res.status(201).json({
       success: true,
       leadId: lead.id
