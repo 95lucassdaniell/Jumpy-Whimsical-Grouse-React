@@ -357,8 +357,8 @@ const Admin = () => {
                     <th>Data</th>
                     <th>Nome</th>
                     <th>Email</th>
-                    <th>Telefone</th>
                     <th>WhatsApp</th>
+                    <th>Clicou WhatsApp</th>
                   </tr>
                 </thead>
                 <tbody>
