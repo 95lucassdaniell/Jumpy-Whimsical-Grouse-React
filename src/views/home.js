@@ -177,7 +177,7 @@ const Home = (props) => {
           <div className="features__content">
             <h2 id="features-heading" className="section-title">
               {' '}
-              Por que começar com a Empreenda T-Shirt
+              Por que começar com a Minha T-Shirt
               <span
                 dangerouslySetInnerHTML={{
                   __html: ' ',
