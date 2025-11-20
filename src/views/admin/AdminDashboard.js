@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import CampaignChart from '../../components/admin/CampaignChart';
 
 const AdminDashboard = () => {
   const [summary, setSummary] = useState(null);
+  const [campaignStats, setCampaignStats] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     loadSummary();
+    loadCampaignStats();
   }, []);
 
   const loadSummary = async () => {
@@ -22,6 +25,21 @@ const AdminDashboard = () => {
       console.error('Error loading summary:', error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const loadCampaignStats = async () => {
+    try {
+      const response = await fetch('/api/analytics/campaigns?period=30', {
+        credentials: 'include'
+      });
+      
+      if (response.ok) {
+        const data = await response.json();
+        setCampaignStats(data);
+      }
+    } catch (error) {
+      console.error('Error loading campaign stats:', error);
     }
   };
 
@@ -112,6 +130,12 @@ const AdminDashboard = () => {
               )}
             </div>
           </div>
+        </div>
+      )}
+
+      {campaignStats && (
+        <div className="dashboard-section">
+          <CampaignChart campaigns={campaignStats.campaigns} />
         </div>
       )}
     </div>

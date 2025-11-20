@@ -151,7 +151,81 @@ async function getSummary(req, res) {
   }
 }
 
+async function getCampaignStats(req, res) {
+  try {
+    const { period = 30 } = req.query;
+    const daysAgo = new Date(Date.now() - period * 24 * 60 * 60 * 1000);
+
+    const campaignLeads = await prisma.lead.groupBy({
+      by: ['utmCampaign', 'utmSource'],
+      where: {
+        createdAt: { gte: daysAgo },
+        utmCampaign: { not: null }
+      },
+      _count: {
+        id: true
+      }
+    });
+
+    const campaigns = await Promise.all(
+      campaignLeads.map(async (item) => {
+        const whereClause = {
+          createdAt: { gte: daysAgo },
+          utmCampaign: item.utmCampaign,
+          utmSource: item.utmSource === null ? null : item.utmSource
+        };
+
+        const visitWhereClause = {
+          visitedAt: { gte: daysAgo },
+          utmCampaign: item.utmCampaign,
+          utmSource: item.utmSource === null ? null : item.utmSource
+        };
+
+        const whatsappClicks = await prisma.lead.count({
+          where: {
+            ...whereClause,
+            whatsappClickedAt: { not: null }
+          }
+        });
+
+        const uniqueVisitors = await prisma.visit.groupBy({
+          by: ['sessionId'],
+          where: visitWhereClause
+        });
+
+        const totalLeads = item._count.id;
+        const uniqueVisitorsCount = uniqueVisitors.length;
+        const conversionRate = uniqueVisitorsCount > 0
+          ? ((totalLeads / uniqueVisitorsCount) * 100).toFixed(1)
+          : 0;
+
+        return {
+          campaign: item.utmCampaign,
+          source: item.utmSource,
+          leads: totalLeads,
+          whatsappClicks,
+          uniqueVisitors: uniqueVisitorsCount,
+          conversionRate: parseFloat(conversionRate)
+        };
+      })
+    );
+
+    campaigns.sort((a, b) => b.leads - a.leads);
+
+    res.json({
+      campaigns: campaigns.slice(0, 10),
+      totalCampaigns: campaigns.length,
+      period
+    });
+
+  } catch (error) {
+    console.error('Error getting campaign stats:', error);
+    res.status(500).json({ error: 'Erro ao buscar estatísticas de campanhas' });
+  }
+}
+
 module.exports = {
   recordVisit,
-  getSummary
+  getSummary,
+  getCampaignStats
 };

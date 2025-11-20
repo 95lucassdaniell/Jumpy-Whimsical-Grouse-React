@@ -12,4 +12,8 @@ router.get('/summary', requireAuth, async (req, res) => {
   await analyticsController.getSummary(req, res);
 });
 
+router.get('/campaigns', requireAuth, async (req, res) => {
+  await analyticsController.getCampaignStats(req, res);
+});
+
 module.exports = router;
