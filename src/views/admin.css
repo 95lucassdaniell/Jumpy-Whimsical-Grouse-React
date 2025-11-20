@@ -8,6 +8,35 @@
   background: #f9fafb;
   display: flex;
   flex-direction: column;
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.admin-layout *,
+.admin-layout input,
+.admin-layout button,
+.admin-layout select,
+.admin-layout textarea,
+.login-container,
+.login-container *,
+.modal-overlay,
+.modal-overlay *,
+.modal-content,
+.modal-content *,
+.modal-details,
+.modal-details *,
+.modal-header,
+.modal-header *,
+.modal-body,
+.modal-body *,
+.delete-lead-info,
+.delete-lead-info *,
+.lead-details-content,
+.lead-details-content * {
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+}
+
+.detail-item .monospace {
+  font-family: 'Courier New', Consolas, Monaco, monospace !important;
 }
 
 .admin-layout-header {
