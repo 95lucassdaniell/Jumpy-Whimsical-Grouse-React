@@ -118,7 +118,6 @@ const AdminLeads = () => {
                 <th>Email</th>
                 <th>WhatsApp</th>
                 <th>Origem</th>
-                <th>Clicou WhatsApp</th>
                 <th>Ações</th>
               </tr>
             </thead>
@@ -145,13 +144,6 @@ const AdminLeads = () => {
                       </div>
                     ) : (
                       <span className="text-muted">-</span>
-                    )}
-                  </td>
-                  <td>
-                    {lead.whatsappClickedAt ? (
-                      <span className="badge badge-success">✓ Clicou</span>
-                    ) : (
-                      <span className="badge badge-pending">Pendente</span>
                     )}
                   </td>
                   <td className="lead-actions">
