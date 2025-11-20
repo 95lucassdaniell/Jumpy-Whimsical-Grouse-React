@@ -263,7 +263,7 @@ const ContactForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="contact-form">
+    <form onSubmit={handleSubmit(onSubmit)} className="contact-form" data-leadflow-form>
       <div className="form-group">
         <label htmlFor="name">Nome completo</label>
         <input
