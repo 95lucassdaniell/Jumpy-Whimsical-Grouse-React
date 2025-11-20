@@ -77,5 +77,68 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <div id="app"></div>
+    <!-- LeadFlow Tracking Script -->
+    <script>
+    (function() {
+      var lf = window.leadflow = window.leadflow || {};
+      lf.projectId = "lf_vqnn7fd5y_1763669073290";
+      lf.apiUrl = "https://helwqjmbaasgroobpkct.supabase.co/functions/v1/capture-lead";
+      
+      function getFieldValue(attr, form) {
+        var field = form.querySelector('[name="' + attr + '"]') || 
+                    form.querySelector('#' + attr);
+        return field ? field.value : '';
+      }
+      
+      lf.init = function() {
+        document.addEventListener('submit', function(e) {
+          if (e.target.matches('[data-leadflow-form]')) {
+            var form = e.target;
+            
+            var data = {
+              script_id: lf.projectId,
+              data: {
+                name: getFieldValue('name', form),
+                email: getFieldValue('email', form),
+                phone: getFieldValue('phone', form),
+                company: getFieldValue('company', form)
+              },
+              metadata: {
+                utm_source: new URLSearchParams(window.location.search).get('utm_source'),
+                utm_medium: new URLSearchParams(window.location.search).get('utm_medium'),
+                utm_campaign: new URLSearchParams(window.location.search).get('utm_campaign'),
+                utm_content: new URLSearchParams(window.location.search).get('utm_content'),
+                utm_term: new URLSearchParams(window.location.search).get('utm_term'),
+                device: /Mobile/.test(navigator.userAgent) ? 'mobile' : 'desktop',
+                browser: navigator.userAgent,
+                page_url: window.location.href,
+                referrer: document.referrer,
+                ip_address: null
+              }
+            };
+            
+            fetch(lf.apiUrl, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(data)
+            }).then(function(response) {
+              if (response.ok) {
+                console.log('Lead capturado com sucesso no LeadFlow!');
+              }
+            }).catch(function(error) {
+              console.error('Erro ao capturar lead no LeadFlow:', error);
+            });
+          }
+        });
+      };
+      
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', lf.init);
+      } else {
+        lf.init();
+      }
+    })();
+    </script>
+    <!-- End LeadFlow Tracking Script -->
   </body>
 </html>
