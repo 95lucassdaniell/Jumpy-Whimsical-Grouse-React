@@ -400,6 +400,38 @@
   font-weight: 500;
 }
 
+.stat-growth {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.stat-growth.positive {
+  color: #10b981;
+}
+
+.stat-growth.negative {
+  color: #ef4444;
+}
+
+.stat-comparison {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: #6b7280;
+  margin-left: 0.25rem;
+}
+
+.stat-card-highlight .stat-growth {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.stat-card-highlight .stat-comparison {
+  color: rgba(255, 255, 255, 0.7);
+}
+
 .leads-section {
   max-width: 1400px;
   margin: var(--spacing-xl) auto;

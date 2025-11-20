@@ -8,6 +8,15 @@ This is a full-stack React + Node.js application for "Minha T-Shirt," a wholesal
 
 ## Recent Changes
 
+**November 20, 2025 - Dashboard Growth Indicators**
+- **Period Comparison System**: Dashboard now shows growth indicators comparing last 30 days vs previous 30 days
+- **API Enhancement**: Updated GET /api/analytics/summary to return current, previous, and growth data structures
+- **Visual Indicators**: Added color-coded arrows (↑ green for positive, ↓ red for negative) with percentage changes
+- **Metrics Tracked**: Growth percentages for visits, leads, WhatsApp clicks, and conversion rate
+- **Calculation Logic**: Handles edge cases (division by zero) and formats percentages to 1 decimal place
+- **UI/UX**: Growth indicators displayed below each stat card with "vs. período anterior" label
+- **Mobile Responsive**: Growth indicators adapt to mobile layout maintaining readability
+
 **November 18, 2025 - Abandoned Signups Auto-Completion**
 - **Smart Lead Tracking**: When a lead is created, system automatically marks matching abandoned signups as completed
 - **Matching Logic**: Uses OR condition - if email OR phone matches, abandoned signup is marked with completedAt timestamp

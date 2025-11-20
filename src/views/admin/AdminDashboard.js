@@ -16,7 +16,7 @@ const AdminDashboard = () => {
 
       if (response.ok) {
         const data = await response.json();
-        setSummary(data.summary);
+        setSummary(data);
       }
     } catch (error) {
       console.error('Error loading summary:', error);
@@ -40,45 +40,61 @@ const AdminDashboard = () => {
         <p className="page-description">Visão geral das métricas e estatísticas</p>
       </div>
 
-      {summary && (
+      {summary && summary.current && (
         <div className="dashboard-stats">
           <div className="stat-card">
             <div className="stat-icon">👁️</div>
             <div className="stat-content">
-              <div className="stat-value">{summary.totalVisits}</div>
-              <div className="stat-label">Visitas Totais</div>
-            </div>
-          </div>
-
-          <div className="stat-card">
-            <div className="stat-icon">👥</div>
-            <div className="stat-content">
-              <div className="stat-value">{summary.uniqueVisitors}</div>
-              <div className="stat-label">Visitantes Únicos</div>
+              <div className="stat-value">{summary.current.totalVisits}</div>
+              <div className="stat-label">Visitas (30 dias)</div>
+              {summary.growth && (
+                <div className={`stat-growth ${summary.growth.visits >= 0 ? 'positive' : 'negative'}`}>
+                  {summary.growth.visits >= 0 ? '↑' : '↓'} {Math.abs(summary.growth.visits)}%
+                  <span className="stat-comparison"> vs. período anterior</span>
+                </div>
+              )}
             </div>
           </div>
 
           <div className="stat-card">
             <div className="stat-icon">📝</div>
             <div className="stat-content">
-              <div className="stat-value">{summary.totalLeads}</div>
-              <div className="stat-label">Leads Cadastrados</div>
+              <div className="stat-value">{summary.current.totalLeads}</div>
+              <div className="stat-label">Leads (30 dias)</div>
+              {summary.growth && (
+                <div className={`stat-growth ${summary.growth.leads >= 0 ? 'positive' : 'negative'}`}>
+                  {summary.growth.leads >= 0 ? '↑' : '↓'} {Math.abs(summary.growth.leads)}%
+                  <span className="stat-comparison"> vs. período anterior</span>
+                </div>
+              )}
             </div>
           </div>
 
           <div className="stat-card">
             <div className="stat-icon">💬</div>
             <div className="stat-content">
-              <div className="stat-value">{summary.leadsWithWhatsApp}</div>
-              <div className="stat-label">Cliques no WhatsApp</div>
+              <div className="stat-value">{summary.current.leadsWithWhatsApp}</div>
+              <div className="stat-label">Cliques WhatsApp (30 dias)</div>
+              {summary.growth && (
+                <div className={`stat-growth ${summary.growth.whatsapp >= 0 ? 'positive' : 'negative'}`}>
+                  {summary.growth.whatsapp >= 0 ? '↑' : '↓'} {Math.abs(summary.growth.whatsapp)}%
+                  <span className="stat-comparison"> vs. período anterior</span>
+                </div>
+              )}
             </div>
           </div>
 
           <div className="stat-card stat-card-highlight">
             <div className="stat-icon">📊</div>
             <div className="stat-content">
-              <div className="stat-value">{summary.conversionRate}%</div>
+              <div className="stat-value">{summary.current.conversionRate}%</div>
               <div className="stat-label">Taxa de Conversão</div>
+              {summary.growth && (
+                <div className={`stat-growth ${summary.growth.conversion >= 0 ? 'positive' : 'negative'}`}>
+                  {summary.growth.conversion >= 0 ? '↑' : '↓'} {Math.abs(summary.growth.conversion)}%
+                  <span className="stat-comparison"> vs. período anterior</span>
+                </div>
+              )}
             </div>
           </div>
         </div>

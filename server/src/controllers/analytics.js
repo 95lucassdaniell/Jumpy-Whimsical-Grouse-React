@@ -36,62 +36,83 @@ async function recordVisit(req, res) {
 
 async function getSummary(req, res) {
   try {
-    const { startDate, endDate } = req.query;
-    
-    const where = {};
-    if (startDate || endDate) {
-      where.createdAt = {};
-      if (startDate) where.createdAt.gte = new Date(startDate);
-      if (endDate) where.createdAt.lte = new Date(endDate);
-    }
+    const now = new Date();
+    const thirtyDaysAgo = new Date(now - 30 * 24 * 60 * 60 * 1000);
+    const sixtyDaysAgo = new Date(now - 60 * 24 * 60 * 60 * 1000);
 
-    const visitsWhere = {};
-    if (startDate || endDate) {
-      visitsWhere.visitedAt = {};
-      if (startDate) visitsWhere.visitedAt.gte = new Date(startDate);
-      if (endDate) visitsWhere.visitedAt.lte = new Date(endDate);
-    }
-
-    const [
-      totalLeads,
-      leadsWithWhatsApp,
-      totalVisits,
-      uniqueVisitors,
-      recentLeads
-    ] = await Promise.all([
-      prisma.lead.count({ where }),
+    const [currentVisits, currentLeads, currentWhatsApp] = await Promise.all([
+      prisma.visit.count({ where: { visitedAt: { gte: thirtyDaysAgo } } }),
+      prisma.lead.count({ where: { createdAt: { gte: thirtyDaysAgo } } }),
       prisma.lead.count({ 
         where: { 
-          ...where,
+          createdAt: { gte: thirtyDaysAgo },
           whatsappClickedAt: { not: null }
         } 
-      }),
-      prisma.visit.count({ where: visitsWhere }),
-      prisma.visit.groupBy({
-        by: ['sessionId'],
-        where: visitsWhere,
-        _count: true
-      }),
-      prisma.lead.findMany({
-        where,
-        orderBy: { createdAt: 'desc' },
-        take: 10
       })
     ]);
 
-    const conversionRate = totalLeads > 0 
-      ? ((leadsWithWhatsApp / totalLeads) * 100).toFixed(2)
+    const [previousVisits, previousLeads, previousWhatsApp] = await Promise.all([
+      prisma.visit.count({ 
+        where: { 
+          visitedAt: { 
+            gte: sixtyDaysAgo,
+            lt: thirtyDaysAgo
+          } 
+        } 
+      }),
+      prisma.lead.count({ 
+        where: { 
+          createdAt: { 
+            gte: sixtyDaysAgo,
+            lt: thirtyDaysAgo
+          } 
+        } 
+      }),
+      prisma.lead.count({ 
+        where: { 
+          createdAt: { 
+            gte: sixtyDaysAgo,
+            lt: thirtyDaysAgo
+          },
+          whatsappClickedAt: { not: null }
+        } 
+      })
+    ]);
+
+    const currentConversion = currentVisits > 0 
+      ? ((currentLeads / currentVisits) * 100).toFixed(1)
+      : 0;
+    const previousConversion = previousVisits > 0
+      ? ((previousLeads / previousVisits) * 100).toFixed(1)
       : 0;
 
+    const calculateGrowth = (current, previous) => {
+      if (previous === 0) return current > 0 ? 100 : 0;
+      return (((current - previous) / previous) * 100).toFixed(1);
+    };
+
     res.json({
-      summary: {
-        totalVisits,
-        uniqueVisitors: uniqueVisitors.length,
-        totalLeads,
-        leadsWithWhatsApp,
-        conversionRate: parseFloat(conversionRate)
+      current: {
+        totalVisits: currentVisits,
+        totalLeads: currentLeads,
+        leadsWithWhatsApp: currentWhatsApp,
+        conversionRate: parseFloat(currentConversion)
       },
-      recentLeads
+      previous: {
+        totalVisits: previousVisits,
+        totalLeads: previousLeads,
+        leadsWithWhatsApp: previousWhatsApp,
+        conversionRate: parseFloat(previousConversion)
+      },
+      growth: {
+        visits: parseFloat(calculateGrowth(currentVisits, previousVisits)),
+        leads: parseFloat(calculateGrowth(currentLeads, previousLeads)),
+        whatsapp: parseFloat(calculateGrowth(currentWhatsApp, previousWhatsApp)),
+        conversion: parseFloat(calculateGrowth(
+          parseFloat(currentConversion), 
+          parseFloat(previousConversion)
+        ))
+      }
     });
   } catch (error) {
     console.error('Error getting summary:', error);
