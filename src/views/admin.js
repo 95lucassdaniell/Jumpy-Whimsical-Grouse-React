@@ -8,6 +8,7 @@ const Admin = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   
   const [activeTab, setActiveTab] = useState('leads');
   
@@ -226,39 +227,68 @@ const Admin = () => {
           <div className="login-header">
             <img src="/logo-minha-tshirt.png" alt="Minha T-Shirt" className="login-logo" />
             <h1>Painel Administrativo</h1>
+            <p className="login-subtitle">Acesse sua conta para gerenciar leads</p>
           </div>
           
           <form onSubmit={handleLogin} className="login-form">
-            {error && <div className="login-error">{error}</div>}
+            {error && (
+              <div className="login-error">
+                <span className="error-icon">⚠️</span>
+                <span>{error}</span>
+              </div>
+            )}
             
-            <div className="form-group">
-              <label htmlFor="username">Usuário</label>
+            <div className="form-group-login">
               <input
                 id="username"
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                placeholder="Digite seu usuário"
+                placeholder=" "
                 required
+                autoComplete="username"
               />
+              <label htmlFor="username">Usuário</label>
             </div>
 
-            <div className="form-group">
-              <label htmlFor="password">Senha</label>
-              <input
-                id="password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Digite sua senha"
-                required
-              />
+            <div className="form-group-login">
+              <div className="password-input-wrapper">
+                <input
+                  id="password"
+                  type={showPassword ? 'text' : 'password'}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder=" "
+                  required
+                  autoComplete="current-password"
+                />
+                <label htmlFor="password">Senha</label>
+                <button
+                  type="button"
+                  className="password-toggle"
+                  onClick={() => setShowPassword(!showPassword)}
+                  aria-label={showPassword ? 'Ocultar senha' : 'Mostrar senha'}
+                >
+                  {showPassword ? '👁️' : '👁️‍🗨️'}
+                </button>
+              </div>
             </div>
 
-            <button type="submit" className="btn btn-primary btn-login">
-              {isLoading ? 'Entrando...' : 'Entrar'}
+            <button type="submit" className="btn btn-primary btn-login" disabled={isLoading}>
+              {isLoading ? (
+                <>
+                  <span className="spinner-small"></span>
+                  Entrando...
+                </>
+              ) : (
+                'Entrar no Painel'
+              )}
             </button>
           </form>
+
+          <div className="login-footer">
+            <p>© 2025 Minha T-Shirt. Todos os direitos reservados.</p>
+          </div>
         </div>
       </div>
     );
