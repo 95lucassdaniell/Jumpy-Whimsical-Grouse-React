@@ -9,15 +9,31 @@ import {
 
 import './style.css'
 import Home from './views/home'
-import Admin from './views/admin'
 import NotFound from './views/not-found'
+import AdminLayout from './components/admin/AdminLayout'
+import AdminDashboard from './views/admin/AdminDashboard'
+import AdminLeads from './views/admin/AdminLeads'
+import AdminAbandoned from './views/admin/AdminAbandoned'
+import AdminSettings from './views/admin/AdminSettings'
 
 const App = () => {
   return (
     <Router>
       <Switch>
         <Route component={Home} exact path="/" />
-        <Route component={Admin} exact path="/admin" />
+        
+        <Route path="/admin">
+          <AdminLayout>
+            <Switch>
+              <Route component={AdminDashboard} exact path="/admin/dashboard" />
+              <Route component={AdminLeads} exact path="/admin/leads" />
+              <Route component={AdminAbandoned} exact path="/admin/abandonados" />
+              <Route component={AdminSettings} exact path="/admin/configuracoes" />
+              <Redirect from="/admin" to="/admin/dashboard" exact />
+            </Switch>
+          </AdminLayout>
+        </Route>
+
         <Route component={NotFound} path="**" />
         <Redirect to="**" />
       </Switch>

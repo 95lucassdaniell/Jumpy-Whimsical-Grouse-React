@@ -1,0 +1,138 @@
+import React, { useState, useEffect } from 'react';
+import DateRangeFilter from '../../components/admin/DateRangeFilter';
+
+const AdminLeads = () => {
+  const [leads, setLeads] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [loading, setLoading] = useState(true);
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+
+  useEffect(() => {
+    loadLeads();
+  }, [currentPage, startDate, endDate]);
+
+  const loadLeads = async () => {
+    setLoading(true);
+    try {
+      let url = `/api/leads?page=${currentPage}&limit=20`;
+      if (startDate) url += `&startDate=${startDate}`;
+      if (endDate) url += `&endDate=${endDate}`;
+
+      const response = await fetch(url, { 
+        credentials: 'include' 
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setLeads(data.leads);
+        setTotalPages(data.pagination.pages);
+      }
+    } catch (error) {
+      console.error('Error loading leads:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleDateRangeChange = (start, end) => {
+    setStartDate(start);
+    setEndDate(end);
+    setCurrentPage(1);
+  };
+
+  const handleExportCSV = () => {
+    let url = '/api/leads?format=csv';
+    if (startDate) url += `&startDate=${startDate}`;
+    if (endDate) url += `&endDate=${endDate}`;
+    window.open(url, '_blank');
+  };
+
+  const formatDate = (dateString) => {
+    return new Date(dateString).toLocaleString('pt-BR', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+  };
+
+  return (
+    <div className="admin-page">
+      <div className="page-header">
+        <div>
+          <h2>Leads Completos</h2>
+          <p className="page-description">Lista de todos os leads que completaram o cadastro</p>
+        </div>
+        <button onClick={handleExportCSV} className="btn btn-primary btn-export">
+          📥 Exportar CSV
+        </button>
+      </div>
+
+      <DateRangeFilter onChange={handleDateRangeChange} />
+
+      <div className="leads-table-container">
+        {loading ? (
+          <div className="table-loading">
+            <div className="spinner"></div>
+          </div>
+        ) : (
+          <table className="leads-table">
+            <thead>
+              <tr>
+                <th>Data</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>WhatsApp</th>
+                <th>Clicou WhatsApp</th>
+              </tr>
+            </thead>
+            <tbody>
+              {leads.map((lead) => (
+                <tr key={lead.id}>
+                  <td>{formatDate(lead.createdAt)}</td>
+                  <td>{lead.name}</td>
+                  <td>{lead.email}</td>
+                  <td>{lead.phone}</td>
+                  <td>
+                    {lead.whatsappClickedAt ? (
+                      <span className="badge badge-success">✓ Clicou</span>
+                    ) : (
+                      <span className="badge badge-pending">Pendente</span>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+      </div>
+
+      {totalPages > 1 && (
+        <div className="pagination">
+          <button
+            onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+            disabled={currentPage === 1}
+            className="btn btn-outline btn-pagination"
+          >
+            ← Anterior
+          </button>
+          <span className="pagination-info">
+            Página {currentPage} de {totalPages}
+          </span>
+          <button
+            onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+            disabled={currentPage === totalPages}
+            className="btn btn-outline btn-pagination"
+          >
+            Próxima →
+          </button>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default AdminLeads;

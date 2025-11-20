@@ -59,16 +59,28 @@ async function recordWhatsAppClick(req, res) {
 
 async function getLeads(req, res) {
   try {
-    const { format, page = 1, limit = 50 } = req.query;
+    const { format, page = 1, limit = 50, startDate, endDate } = req.query;
     const skip = (page - 1) * limit;
+
+    const where = {};
+    if (startDate || endDate) {
+      where.createdAt = {};
+      if (startDate) where.createdAt.gte = new Date(startDate);
+      if (endDate) {
+        const end = new Date(endDate);
+        end.setHours(23, 59, 59, 999);
+        where.createdAt.lte = end;
+      }
+    }
 
     const [leads, total] = await Promise.all([
       prisma.lead.findMany({
+        where,
         orderBy: { createdAt: 'desc' },
         skip: parseInt(skip),
         take: parseInt(limit)
       }),
-      prisma.lead.count()
+      prisma.lead.count({ where })
     ]);
 
     if (format === 'csv') {
@@ -84,6 +96,7 @@ async function getLeads(req, res) {
       ];
 
       const allLeads = await prisma.lead.findMany({
+        where,
         orderBy: { createdAt: 'desc' }
       });
 

@@ -199,10 +199,83 @@ const exportAbandonedCSV = async (req, res) => {
   }
 };
 
+const convertToLead = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { name, email, phone } = req.body;
+
+    const abandonedSignup = await prisma.abandonedSignup.findUnique({
+      where: { id }
+    });
+
+    if (!abandonedSignup) {
+      return res.status(404).json({ error: 'Cadastro abandonado não encontrado' });
+    }
+
+    if (abandonedSignup.completedAt) {
+      return res.status(400).json({ error: 'Este cadastro já foi convertido' });
+    }
+
+    const leadData = {
+      name: name || abandonedSignup.name,
+      email: email || abandonedSignup.email,
+      phone: phone || abandonedSignup.phone,
+      utmSource: abandonedSignup.utmSource,
+      utmMedium: abandonedSignup.utmMedium,
+      utmCampaign: abandonedSignup.utmCampaign
+    };
+
+    if (!leadData.name || !leadData.email || !leadData.phone) {
+      return res.status(400).json({ 
+        error: 'Nome, email e telefone são obrigatórios para criar um lead' 
+      });
+    }
+
+    const result = await prisma.$transaction(async (tx) => {
+      const existingLead = await tx.lead.findFirst({
+        where: {
+          OR: [
+            { email: leadData.email },
+            { phone: leadData.phone }
+          ]
+        }
+      });
+
+      if (existingLead) {
+        await tx.abandonedSignup.update({
+          where: { id },
+          data: { completedAt: new Date() }
+        });
+        return { leadId: existingLead.id, message: 'Lead já existe' };
+      }
+
+      const newLead = await tx.lead.create({
+        data: leadData
+      });
+
+      await tx.abandonedSignup.update({
+        where: { id },
+        data: { completedAt: new Date() }
+      });
+
+      return { leadId: newLead.id };
+    });
+
+    res.json({
+      success: true,
+      ...result
+    });
+  } catch (error) {
+    console.error('Error converting to lead:', error);
+    res.status(500).json({ error: 'Erro ao converter em lead' });
+  }
+};
+
 module.exports = {
   savePartialSignup,
   markAsCompleted,
   getAbandonedSignups,
   getAbandonedStats,
-  exportAbandonedCSV
+  exportAbandonedCSV,
+  convertToLead
 };
