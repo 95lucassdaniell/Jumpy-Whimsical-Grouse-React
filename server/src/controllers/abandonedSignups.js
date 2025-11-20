@@ -9,7 +9,12 @@ const hashIP = (ip) => {
 
 const savePartialSignup = async (req, res) => {
   try {
-    const { sessionId, name, email, phone, utmSource, utmMedium, utmCampaign } = req.body;
+    const { 
+      sessionId, name, email, phone, 
+      utmSource, utmMedium, utmCampaign,
+      utmContent, utmTerm, fbclid,
+      campaignId, adId, adsetId
+    } = req.body;
 
     if (!sessionId) {
       return res.status(400).json({ error: 'Session ID é obrigatório' });
@@ -36,6 +41,12 @@ const savePartialSignup = async (req, res) => {
           utmSource: utmSource || existingSignup.utmSource,
           utmMedium: utmMedium || existingSignup.utmMedium,
           utmCampaign: utmCampaign || existingSignup.utmCampaign,
+          utmContent: utmContent || existingSignup.utmContent,
+          utmTerm: utmTerm || existingSignup.utmTerm,
+          fbclid: fbclid || existingSignup.fbclid,
+          campaignId: campaignId || existingSignup.campaignId,
+          adId: adId || existingSignup.adId,
+          adsetId: adsetId || existingSignup.adsetId,
           ipHash: ipHash || existingSignup.ipHash,
           completedAt: null
         }
@@ -50,6 +61,12 @@ const savePartialSignup = async (req, res) => {
           utmSource,
           utmMedium,
           utmCampaign,
+          utmContent,
+          utmTerm,
+          fbclid,
+          campaignId,
+          adId,
+          adsetId,
           ipHash
         }
       });
@@ -184,9 +201,9 @@ const exportAbandonedCSV = async (req, res) => {
     });
 
     const csv = [
-      'Nome,Email,Telefone,Data Início,Última Atualização,UTM Source,UTM Medium,UTM Campaign',
+      'Nome,Email,Telefone,Data Início,Última Atualização,UTM Source,UTM Medium,UTM Campaign,UTM Content,UTM Term,Facebook Click ID,Campaign ID,Ad ID,Adset ID',
       ...signups.map(s => 
-        `"${s.name || ''}","${s.email || ''}","${s.phone || ''}","${s.createdAt.toISOString()}","${s.updatedAt.toISOString()}","${s.utmSource || ''}","${s.utmMedium || ''}","${s.utmCampaign || ''}"`
+        `"${s.name || ''}","${s.email || ''}","${s.phone || ''}","${s.createdAt.toISOString()}","${s.updatedAt.toISOString()}","${s.utmSource || ''}","${s.utmMedium || ''}","${s.utmCampaign || ''}","${s.utmContent || ''}","${s.utmTerm || ''}","${s.fbclid || ''}","${s.campaignId || ''}","${s.adId || ''}","${s.adsetId || ''}"`
       )
     ].join('\n');
 
@@ -222,7 +239,13 @@ const convertToLead = async (req, res) => {
       phone: phone || abandonedSignup.phone,
       utmSource: abandonedSignup.utmSource,
       utmMedium: abandonedSignup.utmMedium,
-      utmCampaign: abandonedSignup.utmCampaign
+      utmCampaign: abandonedSignup.utmCampaign,
+      utmContent: abandonedSignup.utmContent,
+      utmTerm: abandonedSignup.utmTerm,
+      fbclid: abandonedSignup.fbclid,
+      campaignId: abandonedSignup.campaignId,
+      adId: abandonedSignup.adId,
+      adsetId: abandonedSignup.adsetId
     };
 
     if (!leadData.name || !leadData.email || !leadData.phone) {

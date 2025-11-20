@@ -57,6 +57,20 @@ const AdminDashboard = () => {
           </div>
 
           <div className="stat-card">
+            <div className="stat-icon">👥</div>
+            <div className="stat-content">
+              <div className="stat-value">{summary.current.uniqueVisitors}</div>
+              <div className="stat-label">Visitantes Únicos (30 dias)</div>
+              {summary.growth && (
+                <div className={`stat-growth ${summary.growth.uniqueVisitors >= 0 ? 'positive' : 'negative'}`}>
+                  {summary.growth.uniqueVisitors >= 0 ? '↑' : '↓'} {Math.abs(summary.growth.uniqueVisitors)}%
+                  <span className="stat-comparison"> vs. período anterior</span>
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div className="stat-card">
             <div className="stat-icon">📝</div>
             <div className="stat-content">
               <div className="stat-value">{summary.current.totalLeads}</div>
@@ -89,6 +103,7 @@ const AdminDashboard = () => {
             <div className="stat-content">
               <div className="stat-value">{summary.current.conversionRate}%</div>
               <div className="stat-label">Taxa de Conversão</div>
+              <div className="stat-subtitle">Leads / Visitantes Únicos</div>
               {summary.growth && (
                 <div className={`stat-growth ${summary.growth.conversion >= 0 ? 'positive' : 'negative'}`}>
                   {summary.growth.conversion >= 0 ? '↑' : '↓'} {Math.abs(summary.growth.conversion)}%

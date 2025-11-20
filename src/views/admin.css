@@ -400,6 +400,16 @@
   font-weight: 500;
 }
 
+.stat-subtitle {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 0.25rem;
+}
+
+.stat-card:not(.stat-card-highlight) .stat-subtitle {
+  color: #6b7280;
+}
+
 .stat-growth {
   font-size: 0.875rem;
   font-weight: 600;

@@ -5,7 +5,12 @@ const prisma = new PrismaClient();
 
 async function createLead(req, res) {
   try {
-    const { name, email, phone, utmSource, utmMedium, utmCampaign } = req.body;
+    const { 
+      name, email, phone, 
+      utmSource, utmMedium, utmCampaign,
+      utmContent, utmTerm, fbclid,
+      campaignId, adId, adsetId
+    } = req.body;
 
     const lead = await prisma.lead.create({
       data: {
@@ -14,7 +19,13 @@ async function createLead(req, res) {
         phone,
         utmSource,
         utmMedium,
-        utmCampaign
+        utmCampaign,
+        utmContent,
+        utmTerm,
+        fbclid,
+        campaignId,
+        adId,
+        adsetId
       }
     });
 
@@ -92,6 +103,12 @@ async function getLeads(req, res) {
         { label: 'UTM Source', value: 'utmSource' },
         { label: 'UTM Medium', value: 'utmMedium' },
         { label: 'UTM Campaign', value: 'utmCampaign' },
+        { label: 'UTM Content', value: 'utmContent' },
+        { label: 'UTM Term', value: 'utmTerm' },
+        { label: 'Facebook Click ID', value: 'fbclid' },
+        { label: 'Campaign ID', value: 'campaignId' },
+        { label: 'Ad ID', value: 'adId' },
+        { label: 'Adset ID', value: 'adsetId' },
         { label: 'Clicou WhatsApp', value: 'whatsappClickedAt' }
       ];
 

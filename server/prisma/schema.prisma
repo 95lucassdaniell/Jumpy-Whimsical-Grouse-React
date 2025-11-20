@@ -16,6 +16,12 @@ model Lead {
   utmSource          String?   @map("utm_source")
   utmMedium          String?   @map("utm_medium")
   utmCampaign        String?   @map("utm_campaign")
+  utmContent         String?   @map("utm_content")
+  utmTerm            String?   @map("utm_term")
+  fbclid             String?   @map("fbclid")
+  campaignId         String?   @map("campaign_id")
+  adId               String?   @map("ad_id")
+  adsetId            String?   @map("adset_id")
   whatsappClickedAt  DateTime? @map("whatsapp_clicked_at")
 
   @@map("leads")
@@ -30,6 +36,12 @@ model Visit {
   utmSource   String?  @map("utm_source")
   utmMedium   String?  @map("utm_medium")
   utmCampaign String?  @map("utm_campaign")
+  utmContent  String?  @map("utm_content")
+  utmTerm     String?  @map("utm_term")
+  fbclid      String?  @map("fbclid")
+  campaignId  String?  @map("campaign_id")
+  adId        String?  @map("ad_id")
+  adsetId     String?  @map("adset_id")
   referrer    String?
 
   @@map("visits")
@@ -54,6 +66,12 @@ model AbandonedSignup {
   utmSource       String?   @map("utm_source")
   utmMedium       String?   @map("utm_medium")
   utmCampaign     String?   @map("utm_campaign")
+  utmContent      String?   @map("utm_content")
+  utmTerm         String?   @map("utm_term")
+  fbclid          String?   @map("fbclid")
+  campaignId      String?   @map("campaign_id")
+  adId            String?   @map("ad_id")
+  adsetId         String?   @map("adset_id")
   completedAt     DateTime? @map("completed_at")
   ipHash          String?   @map("ip_hash")
   
