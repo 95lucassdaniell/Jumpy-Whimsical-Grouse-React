@@ -2,7 +2,7 @@
 
 ## Overview
 
-"Minha T-Shirt" is a full-stack React and Node.js application designed for a wholesale t-shirt business targeting Brazilian women entrepreneurs. Its core purpose is to serve as a comprehensive lead capture platform, integrating a marketing landing page with robust lead management functionalities. The platform features contact form validation, PostgreSQL database storage, an administrative dashboard for lead oversight and analytics, and sophisticated Facebook Ads tracking capabilities. The business vision is to empower women entrepreneurs, leveraging the platform to streamline lead generation, improve conversion rates, and provide valuable insights into marketing campaign performance.
+"Minha T-Shirt" is a full-stack React and Node.js application designed for a wholesale t-shirt business targeting Brazilian women entrepreneurs. Its core purpose is to serve as a comprehensive lead capture platform, integrating a marketing landing page with robust lead management functionalities. The platform features contact form validation, PostgreSQL database storage, an administrative dashboard with multi-page navigation for lead oversight and analytics, sophisticated Facebook Ads tracking capabilities, and a professional login interface. The business vision is to empower women entrepreneurs, leveraging the platform to streamline lead generation, improve conversion rates, and provide valuable insights into marketing campaign performance.
 
 ## User Preferences
 
