@@ -121,7 +121,7 @@
 
 .admin-main {
   margin-left: 260px;
-  padding: var(--spacing-xl);
+  padding: var(--spacing-md);
   min-height: calc(100vh - 73px);
 }
 
@@ -957,12 +957,12 @@
   display: inline-block;
   padding: 0.25rem 0.5rem;
   border-radius: 4px;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 600;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 150px;
+  max-width: 300px;
 }
 
 .origin-source {
