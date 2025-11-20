@@ -781,6 +781,49 @@
   transform: scale(1.1);
 }
 
+.lead-origin {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.origin-badge {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
+}
+
+.origin-source {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.origin-campaign {
+  background: #fce7f3;
+  color: #be185d;
+}
+
+.btn-details-small {
+  background: transparent;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  opacity: 0.6;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.btn-details-small:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
 .modal-overlay {
   position: fixed;
   top: 0;

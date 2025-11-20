@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import DateRangeFilter from '../../components/admin/DateRangeFilter';
 import DeleteLeadModal from '../../components/admin/DeleteLeadModal';
+import LeadDetailsModal from '../../components/admin/LeadDetailsModal';
 
 const AdminLeads = () => {
   const [leads, setLeads] = useState([]);
@@ -10,6 +11,7 @@ const AdminLeads = () => {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [leadToDelete, setLeadToDelete] = useState(null);
+  const [leadToView, setLeadToView] = useState(null);
   const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
@@ -115,6 +117,7 @@ const AdminLeads = () => {
                 <th>Nome</th>
                 <th>Email</th>
                 <th>WhatsApp</th>
+                <th>Origem</th>
                 <th>Clicou WhatsApp</th>
                 <th>Ações</th>
               </tr>
@@ -127,6 +130,24 @@ const AdminLeads = () => {
                   <td>{lead.email}</td>
                   <td>{lead.phone}</td>
                   <td>
+                    {lead.utmSource || lead.utmCampaign ? (
+                      <div className="lead-origin">
+                        {lead.utmSource && (
+                          <span className="origin-badge origin-source">
+                            {lead.utmSource}
+                          </span>
+                        )}
+                        {lead.utmCampaign && (
+                          <span className="origin-badge origin-campaign" title={`Campanha: ${lead.utmCampaign}`}>
+                            📢 {lead.utmCampaign}
+                          </span>
+                        )}
+                      </div>
+                    ) : (
+                      <span className="text-muted">-</span>
+                    )}
+                  </td>
+                  <td>
                     {lead.whatsappClickedAt ? (
                       <span className="badge badge-success">✓ Clicou</span>
                     ) : (
@@ -134,6 +155,13 @@ const AdminLeads = () => {
                     )}
                   </td>
                   <td className="lead-actions">
+                    <button 
+                      className="btn-details-small"
+                      onClick={() => setLeadToView(lead)}
+                      title="Ver detalhes completos"
+                    >
+                      🔍
+                    </button>
                     <button 
                       className="btn-delete-small"
                       onClick={() => setLeadToDelete(lead)}
@@ -177,6 +205,13 @@ const AdminLeads = () => {
           onClose={() => setLeadToDelete(null)}
           onConfirm={handleDeleteLead}
           isDeleting={isDeleting}
+        />
+      )}
+
+      {leadToView && (
+        <LeadDetailsModal
+          lead={leadToView}
+          onClose={() => setLeadToView(null)}
         />
       )}
     </div>

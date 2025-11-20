@@ -1,0 +1,115 @@
+.modal-details {
+  max-width: 700px;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #111827;
+}
+
+.btn-close {
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  line-height: 1;
+  color: #6b7280;
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn-close:hover {
+  background: #f3f4f6;
+  color: #111827;
+}
+
+.lead-details-content {
+  padding: 0 0 1rem 0;
+}
+
+.details-section {
+  margin-bottom: 2rem;
+}
+
+.details-section:last-child {
+  margin-bottom: 0;
+}
+
+.details-section h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.detail-item label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.detail-item span {
+  font-size: 0.9375rem;
+  color: #111827;
+}
+
+.detail-item .highlight {
+  color: #ec56b5;
+  font-weight: 600;
+}
+
+.detail-item .monospace {
+  font-family: 'Courier New', monospace;
+  font-size: 0.875rem;
+  background: #f9fafb;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.modal-footer {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.text-center {
+  text-align: center;
+}
