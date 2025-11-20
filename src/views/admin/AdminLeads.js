@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import DateRangeFilter from '../../components/admin/DateRangeFilter';
+import DeleteLeadModal from '../../components/admin/DeleteLeadModal';
 
 const AdminLeads = () => {
   const [leads, setLeads] = useState([]);
@@ -8,6 +9,8 @@ const AdminLeads = () => {
   const [loading, setLoading] = useState(true);
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
+  const [leadToDelete, setLeadToDelete] = useState(null);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
     loadLeads();
@@ -59,6 +62,32 @@ const AdminLeads = () => {
     });
   };
 
+  const handleDeleteLead = async () => {
+    if (!leadToDelete) return;
+    
+    setIsDeleting(true);
+    try {
+      const response = await fetch(`/api/leads/${leadToDelete.id}`, {
+        method: 'DELETE',
+        credentials: 'include'
+      });
+      
+      if (response.ok) {
+        setLeads(leads.filter(lead => lead.id !== leadToDelete.id));
+        setLeadToDelete(null);
+        alert('Lead excluído com sucesso!');
+      } else {
+        const data = await response.json();
+        alert(data.error || 'Erro ao excluir lead');
+      }
+    } catch (error) {
+      console.error('Error deleting lead:', error);
+      alert('Erro ao excluir lead');
+    } finally {
+      setIsDeleting(false);
+    }
+  };
+
   return (
     <div className="admin-page">
       <div className="page-header">
@@ -87,6 +116,7 @@ const AdminLeads = () => {
                 <th>Email</th>
                 <th>WhatsApp</th>
                 <th>Clicou WhatsApp</th>
+                <th>Ações</th>
               </tr>
             </thead>
             <tbody>
@@ -102,6 +132,15 @@ const AdminLeads = () => {
                     ) : (
                       <span className="badge badge-pending">Pendente</span>
                     )}
+                  </td>
+                  <td className="lead-actions">
+                    <button 
+                      className="btn-delete-small"
+                      onClick={() => setLeadToDelete(lead)}
+                      title="Excluir lead"
+                    >
+                      🗑️
+                    </button>
                   </td>
                 </tr>
               ))}
@@ -130,6 +169,15 @@ const AdminLeads = () => {
             Próxima →
           </button>
         </div>
+      )}
+
+      {leadToDelete && (
+        <DeleteLeadModal
+          lead={leadToDelete}
+          onClose={() => setLeadToDelete(null)}
+          onConfirm={handleDeleteLead}
+          isDeleting={isDeleting}
+        />
       )}
     </div>
   );

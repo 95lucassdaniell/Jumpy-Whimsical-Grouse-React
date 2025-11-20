@@ -762,6 +762,25 @@
   font-size: 0.875rem;
 }
 
+.lead-actions {
+  text-align: center;
+}
+
+.btn-delete-small {
+  background: transparent;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  opacity: 0.6;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.btn-delete-small:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
 .modal-overlay {
   position: fixed;
   top: 0;

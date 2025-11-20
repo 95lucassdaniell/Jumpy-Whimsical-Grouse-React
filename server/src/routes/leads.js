@@ -28,4 +28,8 @@ router.get('/', requireAuth, async (req, res) => {
   await leadsController.getLeads(req, res);
 });
 
+router.delete('/:id', requireAuth, async (req, res) => {
+  await leadsController.deleteLead(req, res);
+});
+
 module.exports = router;

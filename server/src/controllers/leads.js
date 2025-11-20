@@ -140,8 +140,32 @@ async function getLeads(req, res) {
   }
 }
 
+async function deleteLead(req, res) {
+  try {
+    const { id } = req.params;
+    
+    const lead = await prisma.lead.findUnique({
+      where: { id }
+    });
+    
+    if (!lead) {
+      return res.status(404).json({ error: 'Lead não encontrado' });
+    }
+    
+    await prisma.lead.delete({
+      where: { id }
+    });
+    
+    res.json({ success: true, message: 'Lead excluído com sucesso' });
+  } catch (error) {
+    console.error('Error deleting lead:', error);
+    res.status(500).json({ error: 'Erro ao excluir lead' });
+  }
+}
+
 module.exports = {
   createLead,
   recordWhatsAppClick,
-  getLeads
+  getLeads,
+  deleteLead
 };
