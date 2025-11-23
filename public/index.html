@@ -70,6 +70,24 @@
     />
     <script id="tracking-codes-loader">
       (function() {
+        function injectNoscripts(data) {
+          if (data.gtm) {
+            var gtmNoscript = document.getElementById('gtm-noscript');
+            if (gtmNoscript) {
+              gtmNoscript.innerHTML = '<iframe src="https://www.googletagmanager.com/ns.html?id=' + 
+                data.gtm + '" height="0" width="0" style="display:none;visibility:hidden"></iframe>';
+            }
+          }
+          
+          if (data.facebookPixel) {
+            var fbNoscript = document.getElementById('fb-pixel-noscript');
+            if (fbNoscript) {
+              fbNoscript.innerHTML = '<img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=' +
+                data.facebookPixel + '&ev=PageView&noscript=1" />';
+            }
+          }
+        }
+        
         fetch('/api/tracking-codes')
           .then(function(response) { return response.json(); })
           .then(function(data) {
@@ -95,6 +113,14 @@
             }
             
             window.trackingCodesLoaded = data;
+            
+            if (document.readyState === 'loading') {
+              document.addEventListener('DOMContentLoaded', function() {
+                injectNoscripts(data);
+              });
+            } else {
+              injectNoscripts(data);
+            }
           })
           .catch(function(error) {
             console.error('Error loading tracking codes:', error);
@@ -105,24 +131,6 @@
   <body>
     <noscript id="gtm-noscript"></noscript>
     <noscript id="fb-pixel-noscript"></noscript>
-    <script>
-      if (window.trackingCodesLoaded) {
-        if (window.trackingCodesLoaded.gtm) {
-          var gtmNoscript = document.getElementById('gtm-noscript');
-          if (gtmNoscript) {
-            gtmNoscript.innerHTML = '<iframe src="https://www.googletagmanager.com/ns.html?id=' + 
-              window.trackingCodesLoaded.gtm + '" height="0" width="0" style="display:none;visibility:hidden"></iframe>';
-          }
-        }
-        if (window.trackingCodesLoaded.facebookPixel) {
-          var fbNoscript = document.getElementById('fb-pixel-noscript');
-          if (fbNoscript) {
-            fbNoscript.innerHTML = '<img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=' +
-              window.trackingCodesLoaded.facebookPixel + '&ev=PageView&noscript=1" />';
-          }
-        }
-      }
-    </script>
     <div id="app"></div>
     <script>
     (function() {
