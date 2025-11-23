@@ -9,6 +9,7 @@ const analyticsRouter = require('./routes/analytics');
 const authRouter = require('./routes/auth');
 const abandonedSignupsRouter = require('./routes/abandonedSignups');
 const settingsRouter = require('./routes/settings');
+const trackingCodesRouter = require('./routes/trackingCodes');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -36,6 +37,7 @@ app.use('/api/analytics', analyticsRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/abandoned-signups', abandonedSignupsRouter);
 app.use('/api/settings', settingsRouter);
+app.use('/api/tracking-codes', trackingCodesRouter);
 
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });

@@ -21,7 +21,13 @@ async function getSettings(req, res) {
 
 async function updateSettings(req, res) {
   try {
-    const { redirectUrl, redirectEnabled } = req.body;
+    const { 
+      redirectUrl, 
+      redirectEnabled,
+      trackingLeadFlow,
+      trackingGTM,
+      trackingFacebookPixel
+    } = req.body;
 
     // Update or create redirect URL setting
     if (redirectUrl !== undefined) {
@@ -38,6 +44,33 @@ async function updateSettings(req, res) {
         where: { key: 'redirectEnabled' },
         update: { value: String(redirectEnabled) },
         create: { key: 'redirectEnabled', value: String(redirectEnabled) }
+      });
+    }
+
+    // Update or create LeadFlow tracking code
+    if (trackingLeadFlow !== undefined) {
+      await prisma.setting.upsert({
+        where: { key: 'trackingLeadFlow' },
+        update: { value: trackingLeadFlow },
+        create: { key: 'trackingLeadFlow', value: trackingLeadFlow }
+      });
+    }
+
+    // Update or create GTM tracking code
+    if (trackingGTM !== undefined) {
+      await prisma.setting.upsert({
+        where: { key: 'trackingGTM' },
+        update: { value: trackingGTM },
+        create: { key: 'trackingGTM', value: trackingGTM }
+      });
+    }
+
+    // Update or create Facebook Pixel tracking code
+    if (trackingFacebookPixel !== undefined) {
+      await prisma.setting.upsert({
+        where: { key: 'trackingFacebookPixel' },
+        update: { value: trackingFacebookPixel },
+        create: { key: 'trackingFacebookPixel', value: trackingFacebookPixel }
       });
     }
 

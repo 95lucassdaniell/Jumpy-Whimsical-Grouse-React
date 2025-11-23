@@ -15,6 +15,7 @@ import AdminDashboard from './views/admin/AdminDashboard'
 import AdminLeads from './views/admin/AdminLeads'
 import AdminAbandoned from './views/admin/AdminAbandoned'
 import AdminSettings from './views/admin/AdminSettings'
+import AdminTrackingCodes from './views/admin/AdminTrackingCodes'
 
 const App = () => {
   return (
@@ -29,6 +30,7 @@ const App = () => {
               <Route component={AdminLeads} exact path="/admin/leads" />
               <Route component={AdminAbandoned} exact path="/admin/abandonados" />
               <Route component={AdminSettings} exact path="/admin/configuracoes" />
+              <Route component={AdminTrackingCodes} exact path="/admin/rastreamento" />
               <Redirect from="/admin" to="/admin/dashboard" exact />
             </Switch>
           </AdminLayout>
