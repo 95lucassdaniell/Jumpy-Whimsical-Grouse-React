@@ -1,8 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import './contact-form.css';
+
+const REDIRECT_URL = 'https://sige.letgrupo.com.br/link/comercial-atendentes';
 
 const schema = yup.object({
   name: yup.string().required('Nome é obrigatório'),
@@ -12,217 +14,63 @@ const schema = yup.object({
     .min(10, 'Telefone deve ter pelo menos 10 dígitos')
 }).required();
 
-const getOrCreateSessionId = () => {
-  let sessionId = sessionStorage.getItem('formSessionId');
-  if (!sessionId) {
-    sessionId = 'session_' + Date.now() + '_' + Math.random().toString(36).substring(2, 9);
-    sessionStorage.setItem('formSessionId', sessionId);
-  }
-  return sessionId;
-};
-
 const ContactForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [leadId, setLeadId] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [formData, setFormData] = useState({ name: '', email: '', phone: '' });
   const [countdown, setCountdown] = useState(3);
-  const [redirectUrl, setRedirectUrl] = useState('');
-  const saveTimeoutRef = useRef(null);
-  const sessionIdRef = useRef(getOrCreateSessionId());
   
   const {
     register,
     handleSubmit,
-    formState: { errors },
-    watch
+    formState: { errors }
   } = useForm({
     resolver: yupResolver(schema)
   });
 
-  const savePartialData = async (data) => {
-    try {
-      const urlParams = new URLSearchParams(window.location.search);
-      await fetch('/api/abandoned-signups', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          sessionId: sessionIdRef.current,
-          name: data.name || null,
-          email: data.email || null,
-          phone: data.phone || null,
-          utmSource: urlParams.get('utm_source'),
-          utmMedium: urlParams.get('utm_medium'),
-          utmCampaign: urlParams.get('utm_campaign'),
-          utmContent: urlParams.get('utm_content'),
-          utmTerm: urlParams.get('utm_term'),
-          fbclid: urlParams.get('fbclid'),
-          campaignId: urlParams.get('campaign_id'),
-          adId: urlParams.get('ad_id'),
-          adsetId: urlParams.get('adset_id')
-        })
-      });
-    } catch (error) {
-      console.error('Error saving partial data:', error);
-    }
-  };
-
-  const handleFieldChange = (field, value) => {
-    const updatedData = { ...formData, [field]: value };
-    setFormData(updatedData);
-
-    if (saveTimeoutRef.current) {
-      clearTimeout(saveTimeoutRef.current);
-    }
-
-    if (value && value.length > 2) {
-      saveTimeoutRef.current = setTimeout(() => {
-        savePartialData(updatedData);
-      }, 1500);
-    }
-  };
-
-  useEffect(() => {
-    const subscription = watch((value) => {
-      if (value.name !== formData.name) handleFieldChange('name', value.name);
-      if (value.email !== formData.email) handleFieldChange('email', value.email);
-      if (value.phone !== formData.phone) handleFieldChange('phone', value.phone);
-    });
-    return () => subscription.unsubscribe();
-  }, [watch, formData]);
-
   useEffect(() => {
     if (!isSubmitted) return;
 
-    let timer = null;
-    let retryCount = 0;
-    const MAX_RETRIES = 3;
-    const FALLBACK_URL = 'https://sige.letgrupo.com.br/link/atacado-comercial';
-    
-    const startRedirect = (url) => {
-      setRedirectUrl(url);
-      setCountdown(3);
-      
-      timer = setInterval(() => {
-        setCountdown((prev) => {
-          if (prev <= 1) {
-            clearInterval(timer);
-            window.location.href = url;
-            return 0;
-          }
-          return prev - 1;
-        });
-      }, 1000);
-    };
-    
-    const fetchSettings = async () => {
-      try {
-        const response = await fetch('/api/settings');
-        
-        if (!response.ok) {
-          throw new Error(`HTTP ${response.status}`);
+    const timer = setInterval(() => {
+      setCountdown((prev) => {
+        if (prev <= 1) {
+          clearInterval(timer);
+          window.location.href = REDIRECT_URL;
+          return 0;
         }
-        
-        const data = await response.json();
-        
-        if (data.settings && data.settings.redirectEnabled === 'true' && data.settings.redirectUrl) {
-          startRedirect(data.settings.redirectUrl);
-        } else {
-          startRedirect(FALLBACK_URL);
-        }
-      } catch (error) {
-        console.error('Erro ao buscar configurações:', error);
-        
-        if (retryCount < MAX_RETRIES) {
-          retryCount++;
-          setTimeout(fetchSettings, 1000 * retryCount);
-        } else {
-          startRedirect(FALLBACK_URL);
-        }
-      }
-    };
-
-    fetchSettings();
+        return prev - 1;
+      });
+    }, 1000);
     
-    return () => {
-      if (timer) {
-        clearInterval(timer);
-      }
-    };
+    return () => clearInterval(timer);
   }, [isSubmitted]);
 
   const onSubmit = async (data) => {
     setIsLoading(true);
     
-    try {
-      const urlParams = new URLSearchParams(window.location.search);
-      const response = await fetch('/api/leads', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          ...data,
-          utmSource: urlParams.get('utm_source'),
-          utmMedium: urlParams.get('utm_medium'),
-          utmCampaign: urlParams.get('utm_campaign'),
-          utmContent: urlParams.get('utm_content'),
-          utmTerm: urlParams.get('utm_term'),
-          fbclid: urlParams.get('fbclid'),
-          campaignId: urlParams.get('campaign_id'),
-          adId: urlParams.get('ad_id'),
-          adsetId: urlParams.get('adset_id')
-        })
+    if (window.dataLayer) {
+      window.dataLayer.push({
+        event: 'form_submit',
+        form_name: 'contact_form',
+        user_name: data.name,
+        user_email: data.email,
+        user_phone: data.phone
       });
-
-      if (response.ok) {
-        const result = await response.json();
-        setLeadId(result.leadId);
-        setIsSubmitted(true);
-
-        await fetch('/api/abandoned-signups/mark-completed', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            sessionId: sessionIdRef.current
-          })
-        });
-
-        sessionStorage.removeItem('formSessionId');
-        sessionIdRef.current = 'session_' + Date.now() + '_' + Math.random().toString(36).substring(2, 9);
-        sessionStorage.setItem('formSessionId', sessionIdRef.current);
-        
-        if (window.dataLayer) {
-          window.dataLayer.push({
-            event: 'form_submit',
-            form_name: 'contact_form'
-          });
-        }
-      } else {
-        alert('Erro ao enviar formulário. Tente novamente.');
-      }
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      alert('Erro ao enviar formulário. Tente novamente.');
-    } finally {
-      setIsLoading(false);
     }
+
+    setTimeout(() => {
+      setIsSubmitted(true);
+      setIsLoading(false);
+    }, 500);
   };
 
   const handleButtonClick = () => {
-    if (redirectUrl) {
-      if (window.dataLayer) {
-        window.dataLayer.push({
-          event: 'redirect_button_click',
-          redirect_url: redirectUrl
-        });
-      }
-      window.location.href = redirectUrl;
+    if (window.dataLayer) {
+      window.dataLayer.push({
+        event: 'redirect_button_click',
+        redirect_url: REDIRECT_URL
+      });
     }
+    window.location.href = REDIRECT_URL;
   };
 
   if (isSubmitted) {
@@ -233,16 +81,13 @@ const ContactForm = () => {
         <p className="success-message">
           Obrigado pelo seu cadastro! Em instantes você será redirecionado para falar com nossa equipe.
         </p>
-        {redirectUrl && (
-          <div className="redirect-countdown">
-            <p>Redirecionando em <strong>{countdown}</strong> segundo{countdown !== 1 ? 's' : ''}...</p>
-          </div>
-        )}
+        <div className="redirect-countdown">
+          <p>Redirecionando em <strong>{countdown}</strong> segundo{countdown !== 1 ? 's' : ''}...</p>
+        </div>
         <button 
           onClick={handleButtonClick}
           className="btn btn-primary btn-redirect"
           aria-label="Falar com consultora agora"
-          disabled={!redirectUrl}
         >
           <svg
             width="20"
